@@ -1,6 +1,17 @@
-const express = require('express')
-const app = express()
+// External packages
+const express = require('express');
+const app = express();
+const methodOverride = require('method-override');
+const path = require('path');
 
+// Internal references
+
+
+
+// middleware 
+app.use(express.urlencoded({ extended: true })); 
+app.use(methodOverride("_method")); 
+app.use(express.static(path.join(__dirname, 'public'))); 
 
 // test routings
 app.get('/', (req, res) => {
