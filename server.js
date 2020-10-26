@@ -5,9 +5,11 @@ const methodOverride = require('method-override');
 const path = require('path');
 
 // Internal references
-const controllers = require('./controllers')
+const controllers = require('./controllers'); 
 
 const PORT = 3000
+
+app.set('view engine', 'ejs'); 
 
 // middleware 
 app.use(express.urlencoded({ extended: true })); 

@@ -3,12 +3,12 @@ const router = express.Router()
 
 // HOME
 router.get('/', (req, res) => {
-  res.send('This is the home page')
+  res.render('home/index.ejs')
 })
 
 // SEARCH
 router.get('/search', (req, res) => {
-  res.send('This is the search page')
+  res.render('home/search.ejs')
 })
 
 module.exports = router

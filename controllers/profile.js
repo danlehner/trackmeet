@@ -1,40 +1,48 @@
 const express = require('express')
 const router = express.Router()
 
+
+/* PROFILE */
 router.get('/', (req, res) => {
-  res.send('This is the profile page')
+  res.render('profile/index.ejs')
 })
 
 router.get('/edit', (req, res) => {
-  res.send('This is the Profile Edit page')
+  res.render('profile/edit.ejs')
 })
 
+/* GENRES */
+
 router.get('/genres', (req, res) => {
-  res.send('This is the Genres page')
+  res.render('profile/genres/index.ejs')
 })
 
 router.get('/genres/:genreID', (req, res) => {
-  res.send("This is the display page for a given genre")
+  res.render('profile/genres/genre-show.ejs')
 })
+
+/* ARTISTS */
 
 router.get('/artists', (req, res) => {
-  res.send('This is the Artists page')
-})
+  res.render('profile/artists/index.ejs')
+});
 
 router.get('/artists/:artistID', (req, res) => {
-  res.send("This is the display page for a given artist")
+  res.render('profile/artists/artist-show.ejs')
 })
 
+/* SONGS */
+
 router.get('/songs', (req, res) => {
-  res.send('This is the Songs page')
+  res.render('profile/songs/index.ejs')
 })
 
 router.get('/songs/:songID', (req, res) => {
-  res.send("This is the display page for a given song")
+  res.render('profile/songs/song-show.ejs')
 })
 
 router.get('/songs/:songID/edit', (req, res) => {
-  res.send("This is the edit page for a given song")
+  res.render('profile/songs/song-edit.ejs')
 })
 
 module.exports = router
