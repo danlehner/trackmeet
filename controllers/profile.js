@@ -15,8 +15,15 @@ router.get('/edit', (req, res) => {
 
 /* GENRES */
 
-router.get('/genres', (req, res) => {
-  res.render('profile/genres/index.ejs')
+router.get('/genres', async (req, res) => {
+
+  const foundGenres = await db.Genre.find({})
+
+  context = {
+    allGenres: foundGenres
+  }
+
+  res.render('profile/genres/index.ejs', context)
 })
 
 router.get('/genres/:genreID', (req, res) => {
@@ -25,8 +32,14 @@ router.get('/genres/:genreID', (req, res) => {
 
 /* ARTISTS */
 
-router.get('/artists', (req, res) => {
-  res.render('profile/artists/index.ejs')
+router.get('/artists', async (req, res) => {
+
+  const foundArtists = await db.Artist.find({})
+
+  context = {
+    allArtists: foundArtists
+  }
+  res.render('profile/artists/index.ejs', context)
 });
 
 router.get('/artists/:artistID', (req, res) => {

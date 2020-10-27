@@ -27,6 +27,7 @@ router.post('/search', async (req, res) => {
   // }
 
   const createdGenre = await db.Genre.create({
+    dzGenreId: req.body.dzGenreId,
     name: req.body.genre
   })
 
