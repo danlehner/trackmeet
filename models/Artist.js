@@ -9,7 +9,7 @@ const artistSchema = new mongoose.Schema({
       ref: 'Song'
     }
   ], 
-  genre: { type: mongoose.Schema.Types.ObjectID, ref: 'Genre', required: true },
+  genre: { type: mongoose.Schema.Types.ObjectID, ref: 'Genre' },
 })
 
 const Artist = mongoose.model('Artist', artistSchema)
