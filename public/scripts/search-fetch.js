@@ -10,6 +10,31 @@ const GET_CONFIG = {
 		}
 }
 
+const displayResults = function(
+  dzArtistId, 
+  title, 
+  artist, 
+  albumArt, 
+  genre, 
+  genreId) {
+  
+  $('.result-box').append(`
+   <div>
+    <form>
+      <input type="hidden" name="dzArtistId" value="${dzArtistId}"><br>
+      <input type="text" name="title" value="${title}"><br>
+      <input type="text" name="artist" value="${artist}"><br>
+      <input type="hidden" name="albumArt" value="${albumArt}">
+      <input type="text" name="genre" value="${genre}"><br>
+      <input type="hidden" name="genreId" value="${genreId}">
+    </form>
+    <img src="${albumArt}" alt="${title} artwork" />
+   </div>
+  `)
+  
+  console.log(dzArtistId, title, artist, albumArt, genre, genreId)
+}
+
 const dzSearch = (query) => {
   return fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=track:"${query}"`, GET_CONFIG)
    .then(res => res.json())
@@ -35,14 +60,21 @@ const dzSearch = (query) => {
           return fetch(`https://deezerdevs-deezer.p.rapidapi.com/genre/${genreId}`, GET_CONFIG)
           .then(res => res.json())
           .then(genre => {
-            const genreName = genre.name
 
-            console.log(artistId, songTitle, artistName, albumArt, genreName, genreId)
+            let genreName
+            if (genreId === 0) {
+              genreName = 'Misc.'
+            } else {
+              genreName = genre.name
+            }
+
+            displayResults(artistId, songTitle, artistName, albumArt, genreName, genreId); 
           })
       })
    })
  })
 }
+
 
 $('.result-box').submit(function(e) {
   e.preventDefault() 
