@@ -16,17 +16,18 @@ const displayResults = function(
   artist, 
   albumArt, 
   genre, 
-  genreId) {
+  dzGenreId) {
   
   $('.search-results').append(`  
-    <form class="card-body">
+  <form class="card-body result-card" action="/search" method="POST">
     <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
       <input type="hidden" name="dzArtistId" value="${dzArtistId}"><br>
-      <input type="text" name="title" value="${title}"><br>
+      <input class="card-title" type="text" name="title" value="${title}"><br>
       <input type="text" name="artist" value="${artist}"><br>
       <input type="hidden" name="albumArt" value="${albumArt}">
       <input type="text" name="genre" value="${genre}"><br>
-      <input type="hidden" name="genreId" value="${genreId}">
+      <input type="hidden" name="dzGenreId" value="${dzGenreId}">
+     <input class="add-card" type="submit" value="Add" />
     </form>
   `)
   
@@ -67,8 +68,6 @@ const dzSearch = (query) => {
             }
 
             displayResults(artistId, songTitle, artistName, albumArt, genreName, genreId); 
-
-            $('.results-input').val(""); 
           })
       })
    })
@@ -80,7 +79,9 @@ $('.result-box').submit(function(e) {
   e.preventDefault();
   const searchVal = $('.results-input').val();
   dzSearch(searchVal);
+  this.toggleClass('blue')
 })
 
-
-
+$('.result-card').on('click', function() {
+  alert('Hi')
+})

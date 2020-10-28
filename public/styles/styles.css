@@ -1,5 +1,10 @@
 .card-body {
   max-width: 250px;
+  border: 1px solid black;
+}
+
+.blue {
+  background-color: blue;
 }
 
 /*# sourceMappingURL=styles.css.map */
