@@ -41,7 +41,7 @@ const dzSearch = (query) => {
       const artistId = song.artist.id
       const songTitle = song.title
       const artistName = song.artist.name
-      const albumArt = song.album.cover_big
+      const albumArt = song.album.cover_medium
       const albumId = song.album.id
 
       return fetch(`https://deezerdevs-deezer.p.rapidapi.com/album/${albumId}`, GET_CONFIG)
@@ -67,6 +67,8 @@ const dzSearch = (query) => {
             }
 
             displayResults(artistId, songTitle, artistName, albumArt, genreName, genreId); 
+
+            $('.results-input').val(""); 
           })
       })
    })
@@ -75,9 +77,9 @@ const dzSearch = (query) => {
 
 
 $('.result-box').submit(function(e) {
-  e.preventDefault() 
-  const searchVal = $('.results-input').val()
-  dzSearch(searchVal)
+  e.preventDefault();
+  const searchVal = $('.results-input').val();
+  dzSearch(searchVal);
 })
 
 
