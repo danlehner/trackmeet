@@ -8,5 +8,23 @@
 </head>
 <body>
   <h1>This is the Profile page</h1>
+  <h2>Genres</h2>
+  <% genres.forEach(genre => { %>
+    <a href="/profile/genres/<%= genre._id %>">
+      <p><%= genre.name %></p>
+    </a>
+  <% }) %>
+  <h2>Artists</h2>
+  <% artists.forEach(artist => { %>
+    <a href="/profile/artists/<%= artist._id %>">
+      <p><%= artist.name %></p>
+    </a>
+    <% }) %>
+  <h2>Songs</h2>
+  <% songs.forEach(song => { %>
+    <a href="/profile/songs/<%= song._id %>">
+      <p><%= song.title %></p>
+    </a>
+    <% }) %>
 </body>
 </html>

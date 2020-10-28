@@ -11,15 +11,15 @@
   <h2><%= genre.name %></h2>
   <h3>Artists</h3>
   <% genre.artists.forEach(artist => { %>
-    <p>INFO: <%= artist %></p>
     <a href="/profile/artists/<%= artist._id %>">
       <p><%= artist.name %></p>
     </a>
   <% }) %>
   <h3>Songs</h3>
   <% genre.songs.forEach(song => { %>
-    <p>INFO: <%= song %></p>
-    <p><%= song.title %></p>
+    <a href="/profile/songs/<%= song._id %>">
+      <p><%= song.title %></p>
+    </a>
   <% }) %>
 </body>
 </html>

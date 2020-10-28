@@ -5,8 +5,27 @@ const db = require('../models')
 
 
 /* PROFILE */
-router.get('/', (req, res) => {
-  res.render('profile/index.ejs')
+router.get('/', async (req, res) => {
+  try {
+
+    const foundGenres = await db.Genre.find({})
+    const foundArtists = await db.Artist.find({})
+    const foundSongs = await db.Song.find({})
+
+    context = {
+      genres: foundGenres,
+      artists: foundArtists, 
+      songs: foundSongs
+    }
+    
+    res.render('profile/index.ejs', context)
+    
+  } catch (error) {
+
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
+  }
+  
 })
 
 router.get('/edit', (req, res) => {
