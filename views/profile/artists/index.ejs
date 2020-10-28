@@ -9,7 +9,9 @@
 <body>
   <h1>This is the Artists page</h1>
   <% allArtists.map(artist => { %>
+   <a href="/profile/artists/<%= artist._id %>">
     <p><%= artist.name %></p>
+  </a>
   <% }) %> 
 </body>
 </html>

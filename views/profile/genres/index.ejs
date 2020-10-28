@@ -9,7 +9,9 @@
 <body>
   <h1>This is the Genres page</h1>
   <% allGenres.map(genre => { %>
-    <p><%= genre.name %></p>
+    <a href="/profile/genres/<%= genre._id %>">
+      <p><%= genre.name %></p>
+    </a>
   <% }) %> 
 </body>
 </html>
