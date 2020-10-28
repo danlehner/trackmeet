@@ -16,48 +16,136 @@ router.get('/edit', (req, res) => {
 /* GENRES */
 
 router.get('/genres', async (req, res) => {
+  try {
 
-  const foundGenres = await db.Genre.find({})
+    const foundGenres = await db.Genre.find({})
+  
+    context = {
+      allGenres: foundGenres
+    }
+  
+    res.render('profile/genres/index.ejs', context)
 
-  context = {
-    allGenres: foundGenres
+  } catch (error) {
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
   }
 
-  res.render('profile/genres/index.ejs', context)
 })
 
-router.get('/genres/:genreID', (req, res) => {
-  res.render('profile/genres/genre-show.ejs')
+router.get('/genres/:genreID', async (req, res) => {
+
+  try {
+
+    const foundGenre = await db.Genre.findById(req.params.genreID)
+      .populate('artists')
+      .populate('songs')
+
+    const context = {
+      genre: foundGenre, 
+    }
+
+    res.render('profile/genres/genre-show.ejs', context)
+
+  } catch (error) {
+
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
+  }
 })
 
 /* ARTISTS */
 
 router.get('/artists', async (req, res) => {
 
-  const foundArtists = await db.Artist.find({})
+  try {
+    const foundArtists = await db.Artist.find({})
+  
+    context = {
+      allArtists: foundArtists
+    }
+  
+    res.render('profile/artists/index.ejs', context)
 
-  context = {
-    allArtists: foundArtists
+  } catch (error) {
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
   }
-  res.render('profile/artists/index.ejs', context)
+
 });
 
-router.get('/artists/:artistID', (req, res) => {
-  res.render('profile/artists/artist-show.ejs')
+router.get('/artists/:artistID', async (req, res) => {
+
+  try {
+    
+    const foundArtist = await db.Artist.findById(req.params.artistID).populate('songs')
+
+    context = {
+      artist: foundArtist
+    }
+
+    res.render('profile/artists/artist-show.ejs', context)
+
+  } catch (error) {
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
+  }
 })
 
 /* SONGS */
 
-router.get('/songs', (req, res) => {
-  res.render('profile/songs/index.ejs')
+router.get('/songs', async (req, res) => {
+  try {
+    
+    const foundSongs = await db.Song.find({})
+
+    context = {
+      allSongs: foundSongs
+    }
+
+    res.render('profile/songs/index.ejs', context)
+
+  } catch (error) {
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
+  }
 })
 
-router.get('/songs/:songID', (req, res) => {
-  res.render('profile/songs/song-show.ejs')
+router.get('/songs/:songID', async (req, res) => {
+
+  try {
+    const foundSong = await db.Song.findById(req.params.songID)
+
+     context = {
+       song: foundSong
+     }
+
+    res.render('profile/songs/song-show.ejs', context)
+
+  } catch (error) {
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
+  }
 })
 
-router.get('/songs/:songID/edit', (req, res) => {
-  res.render('profile/songs/song-edit.ejs')
+router.get('/songs/:songID/edit', async (req, res) => {
+
+  try {
+
+    const foundSong = await db.Artist.findById(req.params.songID)
+
+    context = {
+      songs: foundSong
+    }
+   
+    res.render('profile/songs/song-edit.ejs')
+    
+  } catch (error) {
+
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
+  }
+
 })
 
 module.exports = router

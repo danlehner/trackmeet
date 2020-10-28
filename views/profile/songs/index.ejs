@@ -8,5 +8,12 @@
 </head>
 <body>
   <h1>This is the Songs page</h1>
+  <ul>
+    <% allSongs.map(song => { %>
+      <a href="/profile/songs/<%= song._id %>">
+        <li><%= song.title %></li>
+      </a>
+    <% }) %> 
+  </ul>
 </body>
 </html>

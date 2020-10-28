@@ -18,9 +18,9 @@ const displayResults = function(
   genre, 
   genreId) {
   
-  $('.result-box').append(`
-   <div>
-    <form>
+  $('.search-results').append(`  
+    <form class="card-body">
+    <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
       <input type="hidden" name="dzArtistId" value="${dzArtistId}"><br>
       <input type="text" name="title" value="${title}"><br>
       <input type="text" name="artist" value="${artist}"><br>
@@ -28,8 +28,6 @@ const displayResults = function(
       <input type="text" name="genre" value="${genre}"><br>
       <input type="hidden" name="genreId" value="${genreId}">
     </form>
-    <img src="${albumArt}" alt="${title} artwork" />
-   </div>
   `)
   
   console.log(dzArtistId, title, artist, albumArt, genre, genreId)

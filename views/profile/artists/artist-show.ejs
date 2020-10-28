@@ -8,5 +8,10 @@
 </head>
 <body>
   <h1>This is the Artist Show page</h1>
+  <h2><%= artist.name %></h2>
+  <% artist.songs.forEach(song => { %>
+    <h3><%= song.title %></h3>
+    <img src="<%= song.albumArt %>" width="300" />
+  <%  }) %>
 </body>
 </html>
