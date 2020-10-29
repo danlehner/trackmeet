@@ -19,54 +19,70 @@ router.post('/search', async (req, res) => {
   try {
     const foundArtist = await db.Artist.findOne({ dzArtistId: req.body.dzArtistId})
     const foundGenre = await db.Genre.findOne({ dzGenreId: req.body.dzGenreId })
-
-    const createdSong = await db.Song.create(req.body)
-
-    console.log('clicked')
   
-    // if (foundArtist) {
-    //   console.log('foundArtist', foundArtist)
+    if (foundGenre) {
 
-    //   console.log(req.body)
+      req.body.genre = foundGenre._id
 
-      // req.body.artist = foundArtist
+      const createdArtist = await db.Artist.create({
+        dzArtistId: req.body.dzArtistId,
+        name: req.body.artist,
+        genre: req.body.genre
+      })
+
+      req.body.artist = createdArtist._id
+
+      const createdSong = await db.Song.create(req.body)
+
+      foundGenre.artists.push(createdArtist)
+      createdArtist.songs.push(createdSong)
+      await createdArtist.save() 
+      await foundGenre.save() 
+
+      console.log(req.body)
+
+     } else if (foundArtist) {
+
+      req.body.artist = foundArtist._id
+
+      console.log(req.body)
 
       // const createdGenre = await db.Genre.create({
       //   dzGenreId: req.body.dzGenreId,
       //   name: req.body.genre
       // })
 
+      // req.body.genre = createdGenre._id
+
+      // const createdSong = await db.Song.create(req.body)
+
       // createdGenre.artists.push(foundArtist)
-      // foundArtist.songs.push(createdSong)
-      // await foundArtist.save() 
-      // await createdGenre.save() 
 
-    // } 
-    // else {
+     }  else {
 
-    //   const createdGenre = await db.Genre.create({
-    //     dzGenreId: req.body.dzGenreId,
-    //     name: req.body.genre
-    //   })
+
+      const createdGenre = await db.Genre.create({
+        dzGenreId: req.body.dzGenreId,
+        name: req.body.genre
+      })
     
-    //   req.body.genre = createdGenre
+      req.body.genre = createdGenre
     
-    //   const createdArtist = await db.Artist.create({
-    //     dzArtistId: req.body.dzArtistId,
-    //     name: req.body.artist,
-    //     genre: req.body.genre
-    //   })
+      const createdArtist = await db.Artist.create({
+        dzArtistId: req.body.dzArtistId,
+        name: req.body.artist,
+        genre: req.body.genre
+      })
     
-    //   req.body.artist = createdArtist
+      req.body.artist = createdArtist
     
-    //   createdGenre.songs.push(createdSong)
-    //   createdGenre.artists.push(createdArtist)
-    //   createdArtist.songs.push(createdSong)
+      createdGenre.songs.push(createdSong)
+      createdGenre.artists.push(createdArtist)
+      createdArtist.songs.push(createdSong)
     
-    //   await createdArtist.save()
-    //   await createdGenre.save()
-    // }
-    
+      await createdArtist.save()
+      await createdGenre.save()
+    } 
   } catch (error) {
     console.log(error)
     res.send( { message: 'Internal Server Error'} )
