@@ -14,10 +14,12 @@ const displayResults = function(
   artist, 
   albumArt, 
   genre, 
-  dzGenreId) {
+  dzGenreId, 
+  cardId) {
   
   $('.search-results').append(`  
-  <form class="card-body result-card" action="/search" method="POST">
+  <div id=${cardId} class="card-body result-card">
+    <form id="card-form" action="/search" method="POST">
     <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
       <input type="hidden" name="dzArtistId" value="${dzArtistId}"><br>
       <input class="card-title" type="text" name="title" value="${title}"><br>
@@ -25,11 +27,12 @@ const displayResults = function(
       <input type="hidden" name="albumArt" value="${albumArt}">
       <input type="text" name="genre" value="${genre}"><br>
       <input type="hidden" name="dzGenreId" value="${dzGenreId}">
-     <input class="add-card" type="submit" value="Add" />
+     <input id="${cardId}-submit" class="add-card" type="submit" value="Add" />
     </form>
+  </div>
   `)
   
-  console.log(dzArtistId, title, artist, albumArt, genre, dzGenreId)
+  // console.log(dzArtistId, title, artist, albumArt, genre, dzGenreId)
 }
 
 const dzSearch = (query) => {
@@ -37,6 +40,7 @@ const dzSearch = (query) => {
    .then(res => res.json())
    .then(json => {
      json.data.map(song => {
+      const cardId = song.id
       const artistId = song.artist.id
       const songTitle = song.title
       const artistName = song.artist.name
@@ -65,7 +69,7 @@ const dzSearch = (query) => {
               genreName = genre.name
             }
 
-            displayResults(artistId, songTitle, artistName, albumArt, genreName, genreId); 
+            displayResults(artistId, songTitle, artistName, albumArt, genreName, genreId, cardId); 
 
             // cardSubmit(); 
           })
@@ -82,10 +86,24 @@ $('.result-box').submit(function(e) {
 })
 
 
-const cardSubmit = function() { 
-  $('.result-card').submit(function(e) {
-    e.preventDefault(); 
-    console.log(e.target)
-    $(this).toggleClass('blue')
-  })
-}
+// const cardSubmit = function() { 
+//   $('.search-results').on('click', function(e) {
+//     e.preventDefault(); 
+//     console.log(e.target.id)
+//     // $(this).toggleClass('blue')
+//   })
+// }
+
+// cardSubmit() 
+
+// if 
+
+$('.card-form').submit(function(e) {
+  e.preventDefault()
+  console.log('hi')
+  // e.preventDefault() 
+  // console.log(e.target)
+  // $(this).toggleClass('blue')
+  // $(`.${e.target.id}`).toggleClass('hidden')
+  // $(`#${e.target.id}`).css('background-color', 'blue')
+})
