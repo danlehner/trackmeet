@@ -19,38 +19,48 @@ router.post('/search', async (req, res) => {
   try {
     const foundArtist = await db.Artist.findOne({ dzArtistId: req.body.dzArtistId})
     const foundGenre = await db.Genre.findOne({ dzGenreId: req.body.dzGenreId })
-  
-    // if (foundArtist) {
-  
-    // }
-  
-    // if (foundGenre) {
-  
-    // }
-  
-    const createdGenre = await db.Genre.create({
-      dzGenreId: req.body.dzGenreId,
-      name: req.body.genre
-    })
-  
-    req.body.genre = createdGenre
-  
-    const createdArtist = await db.Artist.create({
-      dzArtistId: req.body.dzArtistId,
-      name: req.body.artist,
-      genre: req.body.genre
-    })
-  
-    req.body.artist = createdArtist
-    
+
     const createdSong = await db.Song.create(req.body)
   
-    createdGenre.songs.push(createdSong)
-    createdGenre.artists.push(createdArtist)
-    createdArtist.songs.push(createdSong)
-  
-    await createdArtist.save()
-    await createdGenre.save()
+    if (foundArtist) {
+      console.log('foundArtist', foundArtist)
+
+      req.body.artist = foundArtist
+
+      const createdGenre = await db.Genre.create({
+        dzGenreId: req.body.dzGenreId,
+        name: req.body.genre
+      })
+
+      createdGenre.artists.push(foundArtist)
+      foundArtist.songs.push(createdSong)
+      await foundArtist.save() 
+      await createdGenre.save() 
+
+    } else {
+
+      const createdGenre = await db.Genre.create({
+        dzGenreId: req.body.dzGenreId,
+        name: req.body.genre
+      })
+    
+      req.body.genre = createdGenre
+    
+      const createdArtist = await db.Artist.create({
+        dzArtistId: req.body.dzArtistId,
+        name: req.body.artist,
+        genre: req.body.genre
+      })
+    
+      req.body.artist = createdArtist
+    
+      createdGenre.songs.push(createdSong)
+      createdGenre.artists.push(createdArtist)
+      createdArtist.songs.push(createdSong)
+    
+      await createdArtist.save()
+      await createdGenre.save()
+    }
     
   } catch (error) {
     console.log(error)
