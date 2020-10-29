@@ -20,7 +20,20 @@ router.post('/search', async (req, res) => {
     const foundArtist = await db.Artist.findOne({ dzArtistId: req.body.dzArtistId})
     const foundGenre = await db.Genre.findOne({ dzGenreId: req.body.dzGenreId })
   
-    if (foundGenre) {
+    if (foundGenre && foundArtist) {
+
+      req.body.genre = foundGenre._id
+      req.body.artist = foundArtist._id
+
+      const createdSong = await db.Song.create(req.body)
+
+      foundGenre.songs.push(createdSong)
+      foundArtist.songs.push(createdSong)
+
+      await foundArtist.save() 
+      await foundGenre.save() 
+
+    } else if (foundGenre) {
 
       req.body.genre = foundGenre._id
 
