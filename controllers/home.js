@@ -21,46 +21,51 @@ router.post('/search', async (req, res) => {
     const foundGenre = await db.Genre.findOne({ dzGenreId: req.body.dzGenreId })
 
     const createdSong = await db.Song.create(req.body)
+
+    console.log('clicked')
   
-    if (foundArtist) {
-      console.log('foundArtist', foundArtist)
+    // if (foundArtist) {
+    //   console.log('foundArtist', foundArtist)
 
-      req.body.artist = foundArtist
+    //   console.log(req.body)
 
-      const createdGenre = await db.Genre.create({
-        dzGenreId: req.body.dzGenreId,
-        name: req.body.genre
-      })
+      // req.body.artist = foundArtist
 
-      createdGenre.artists.push(foundArtist)
-      foundArtist.songs.push(createdSong)
-      await foundArtist.save() 
-      await createdGenre.save() 
+      // const createdGenre = await db.Genre.create({
+      //   dzGenreId: req.body.dzGenreId,
+      //   name: req.body.genre
+      // })
 
-    } else {
+      // createdGenre.artists.push(foundArtist)
+      // foundArtist.songs.push(createdSong)
+      // await foundArtist.save() 
+      // await createdGenre.save() 
 
-      const createdGenre = await db.Genre.create({
-        dzGenreId: req.body.dzGenreId,
-        name: req.body.genre
-      })
+    // } 
+    // else {
+
+    //   const createdGenre = await db.Genre.create({
+    //     dzGenreId: req.body.dzGenreId,
+    //     name: req.body.genre
+    //   })
     
-      req.body.genre = createdGenre
+    //   req.body.genre = createdGenre
     
-      const createdArtist = await db.Artist.create({
-        dzArtistId: req.body.dzArtistId,
-        name: req.body.artist,
-        genre: req.body.genre
-      })
+    //   const createdArtist = await db.Artist.create({
+    //     dzArtistId: req.body.dzArtistId,
+    //     name: req.body.artist,
+    //     genre: req.body.genre
+    //   })
     
-      req.body.artist = createdArtist
+    //   req.body.artist = createdArtist
     
-      createdGenre.songs.push(createdSong)
-      createdGenre.artists.push(createdArtist)
-      createdArtist.songs.push(createdSong)
+    //   createdGenre.songs.push(createdSong)
+    //   createdGenre.artists.push(createdArtist)
+    //   createdArtist.songs.push(createdSong)
     
-      await createdArtist.save()
-      await createdGenre.save()
-    }
+    //   await createdArtist.save()
+    //   await createdGenre.save()
+    // }
     
   } catch (error) {
     console.log(error)
