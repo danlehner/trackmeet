@@ -19,14 +19,14 @@ const displayResults = function(
   
   $('.search-results').append(`  
   <div id=${cardId} class="card-body result-card">
-    <form id="card-form" action="/search" method="POST">
+    <form class="card-form" action="/search" method="POST">
     <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
-      <input type="hidden" name="dzArtistId" value="${dzArtistId}"><br>
-      <input class="card-title" type="text" name="title" value="${title}"><br>
-      <input type="text" name="artist" value="${artist}"><br>
-      <input type="hidden" name="albumArt" value="${albumArt}">
-      <input type="text" name="genre" value="${genre}"><br>
-      <input type="hidden" name="dzGenreId" value="${dzGenreId}">
+      <input class="dz-artist-id" type="hidden" name="dzArtistId" value="${dzArtistId}"><br>
+      <input class="card-title song-title" type="text" name="title" value="${title}"><br>
+      <input class="artist-name" type="text" name="artist" value="${artist}"><br>
+      <input class="album-art" type="hidden" name="albumArt" value="${albumArt}">
+      <input class="genre-name" type="text" name="genre" value="${genre}"><br>
+      <input class="dz-genre-id" type="hidden" name="dzGenreId" value="${dzGenreId}">
      <input id="${cardId}-submit" class="add-card" type="submit" value="Add" />
     </form>
   </div>
@@ -86,24 +86,31 @@ $('.result-box').submit(function(e) {
 })
 
 
-// const cardSubmit = function() { 
-//   $('.search-results').on('click', function(e) {
-//     e.preventDefault(); 
-//     console.log(e.target.id)
-//     // $(this).toggleClass('blue')
-//   })
-// }
 
-// cardSubmit() 
+$('.search-results').on('click', 'div.result-card', function(e) {
+  e.preventDefault() 
+  const nearestId = $(e.target).closest(".result-card").attr("id")
+  const dzArtistId = $(`#${nearestId}`).find("input.dz-artist-id").val()
+  const title = $(`#${nearestId}`).find("input.song-title").val()
+  const artist = $(`#${nearestId}`).find("input.artist-name").val()
+  const albumArt = $(`#${nearestId}`).find("input.album-art").val()
+  const genre = $(`#${nearestId}`).find("input.genre-name").val()
+  const dzGenreId = $(`#${nearestId}`).find("input.dz-genre-id").val()
 
-// if 
+  console.log(dzArtistId, title, artist, albumArt, genre, dzGenreId)
 
-$('.card-form').submit(function(e) {
-  e.preventDefault()
-  console.log('hi')
-  // e.preventDefault() 
-  // console.log(e.target)
-  // $(this).toggleClass('blue')
-  // $(`.${e.target.id}`).toggleClass('hidden')
-  // $(`#${e.target.id}`).css('background-color', 'blue')
+  // fetch('/search', {
+  //   method: "POST", 
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   }, 
+  //   body: {
+  //     dzArtistId: dzArtistId, 
+  //     title: title, 
+  //     artist: artist, 
+  //     albumArt: albumArt, 
+  //     genre: genre, 
+  //     dzGenreId: dzGenreId
+  //   }
+  // })
 })
