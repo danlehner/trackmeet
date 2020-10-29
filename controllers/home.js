@@ -35,7 +35,9 @@ router.post('/search', async (req, res) => {
       const createdSong = await db.Song.create(req.body)
 
       foundGenre.artists.push(createdArtist)
+      foundGenre.songs.push(createdSong)
       createdArtist.songs.push(createdSong)
+
       await createdArtist.save() 
       await foundGenre.save() 
 
@@ -45,21 +47,23 @@ router.post('/search', async (req, res) => {
 
       req.body.artist = foundArtist._id
 
-      console.log(req.body)
+      const createdGenre = await db.Genre.create({
+        dzGenreId: req.body.dzGenreId,
+        name: req.body.genre
+      })
 
-      // const createdGenre = await db.Genre.create({
-      //   dzGenreId: req.body.dzGenreId,
-      //   name: req.body.genre
-      // })
+      req.body.genre = createdGenre._id
 
-      // req.body.genre = createdGenre._id
+      const createdSong = await db.Song.create(req.body)
 
-      // const createdSong = await db.Song.create(req.body)
+      createdGenre.artists.push(foundArtist)
+      createdGenre.songs.push(createdSong)
+      foundArtist.songs.push(createdSong)
 
-      // createdGenre.artists.push(foundArtist)
+      await createdGenre.save()
+      await foundArtist.save() 
 
      }  else {
-
 
       const createdGenre = await db.Genre.create({
         dzGenreId: req.body.dzGenreId,
@@ -75,6 +79,8 @@ router.post('/search', async (req, res) => {
       })
     
       req.body.artist = createdArtist
+
+      const createdSong = await db.Song.create(req.body)
     
       createdGenre.songs.push(createdSong)
       createdGenre.artists.push(createdArtist)
