@@ -15,40 +15,48 @@ router.get('/search', (req, res) => {
 
 // TEST SEARCH POST ROUTE
 router.post('/search', async (req, res) => {
-  const foundArtist = await db.Artist.findOne({ dzArtistId: req.body.dzArtistId})
-  const foundGenre = await db.Genre.findOne({ dzGenreId: req.body.dzGenreId })
 
-  // if (foundArtist) {
+  try {
 
-  // }
-
-  // if (foundGenre) {
-
-  // }
-
-  const createdGenre = await db.Genre.create({
-    dzGenreId: req.body.dzGenreId,
-    name: req.body.genre
-  })
-
-  req.body.genre = createdGenre
-
-  const createdArtist = await db.Artist.create({
-    dzArtistId: req.body.dzArtistId,
-    name: req.body.artist,
-    genre: req.body.genre
-  })
-
-  req.body.artist = createdArtist
+    const foundArtist = await db.Artist.findOne({ dzArtistId: req.body.dzArtistId})
+    const foundGenre = await db.Genre.findOne({ dzGenreId: req.body.dzGenreId })
   
-  const createdSong = await db.Song.create(req.body)
+    // if (foundArtist) {
+  
+    // }
+  
+    // if (foundGenre) {
+  
+    // }
+  
+    const createdGenre = await db.Genre.create({
+      dzGenreId: req.body.dzGenreId,
+      name: req.body.genre
+    })
+  
+    req.body.genre = createdGenre
+  
+    const createdArtist = await db.Artist.create({
+      dzArtistId: req.body.dzArtistId,
+      name: req.body.artist,
+      genre: req.body.genre
+    })
+  
+    req.body.artist = createdArtist
+    
+    const createdSong = await db.Song.create(req.body)
+  
+    createdGenre.songs.push(createdSong)
+    createdGenre.artists.push(createdArtist)
+    createdArtist.songs.push(createdSong)
+  
+    await createdArtist.save()
+    await createdGenre.save()
 
-  createdGenre.songs.push(createdSong)
-  createdGenre.artists.push(createdArtist)
-  createdArtist.songs.push(createdSong)
+  } catch (error) {
 
-  await createdArtist.save()
-  await createdGenre.save()
+    console.log(error)
+  }
 })
 
 module.exports = router
