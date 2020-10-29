@@ -31,7 +31,7 @@ const displayResults = function(
     </form>
   `)
   
-  console.log(dzArtistId, title, artist, albumArt, genre, genreId)
+  console.log(dzArtistId, title, artist, albumArt, genre, dzGenreId)
 }
 
 const dzSearch = (query) => {
@@ -68,6 +68,8 @@ const dzSearch = (query) => {
             }
 
             displayResults(artistId, songTitle, artistName, albumArt, genreName, genreId); 
+
+            // cardSubmit(); 
           })
       })
    })
@@ -78,10 +80,14 @@ const dzSearch = (query) => {
 $('.result-box').submit(function(e) {
   e.preventDefault();
   const searchVal = $('.results-input').val();
-  dzSearch(searchVal);
-  this.toggleClass('blue')
+  dzSearch(searchVal); 
 })
 
-$('.result-card').on('click', function() {
-  alert('Hi')
-})
+
+const cardSubmit = function() { 
+  $('.result-card').submit(function(e) {
+    e.preventDefault(); 
+    console.log(e.target)
+    $(this).toggleClass('blue')
+  })
+}

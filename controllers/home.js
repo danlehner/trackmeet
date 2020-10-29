@@ -16,7 +16,7 @@ router.get('/search', (req, res) => {
 // TEST SEARCH POST ROUTE
 router.post('/search', async (req, res) => {
   const foundArtist = await db.Artist.findOne({ dzArtistId: req.body.dzArtistId})
-  const foundGenre = await db.Genre.findOne({ name: req.body.genre })
+  const foundGenre = await db.Genre.findOne({ dzGenreId: req.body.dzGenreId })
 
   // if (foundArtist) {
 
