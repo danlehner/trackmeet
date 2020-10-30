@@ -25,4 +25,5 @@ mongoose.connection.on("disconnect", function (event) {
     Artist: require('./Artist'), 
     Genre: require('./Genre'),
     Song: require('./Song'),
+    User: require('./User')
   }
