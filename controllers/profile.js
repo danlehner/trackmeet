@@ -98,9 +98,11 @@ router.get('/artists/:artistID', async (req, res) => {
   try {
     
     const foundArtist = await db.Artist.findById(req.params.artistID).populate('songs')
+    const foundGenre = await db.Genre.findById(foundArtist.genre)
 
     context = {
-      artist: foundArtist
+      artist: foundArtist, 
+      genre: foundGenre
     }
 
     res.render('profile/artists/artist-show.ejs', context)

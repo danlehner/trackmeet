@@ -13,6 +13,7 @@ const displayResults = function(
   title, 
   artist, 
   albumArt, 
+  artistPicture,
   genre, 
   dzGenreId, 
   cardId) {
@@ -24,23 +25,28 @@ const displayResults = function(
       <input class="dz-artist-id" type="hidden" name="dzArtistId" value="${dzArtistId}"><br>
       <input class="card-title song-title" type="text" name="title" value="${title}"><br>
       <input class="artist-name" type="text" name="artist" value="${artist}"><br>
-      <input class="album-art" type="hidden" name="albumArt" value="${albumArt}">
+      <input class="album-art" type="hidden" name="albumArt" value="${albumArt}"><br>
+      <input class="artist-picture" type="hidden" name="artistPicture" value="${artistPicture}"><br>
       <input class="genre-name" type="text" name="genre" value="${genre}"><br>
       <input class="dz-genre-id" type="hidden" name="dzGenreId" value="${dzGenreId}">
     </form>
   </div>
   `)
+
 }
 
 const dzSearch = (query) => {
+  $('.search-results').append(`<p id="loading-text">Loading...</p>`)
   return fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=track:"${query}"`, GET_CONFIG)
    .then(res => res.json())
    .then(json => {
+     console.log(json.data)
      json.data.map(song => {
       const cardId = song.id
       const artistId = song.artist.id
       const songTitle = song.title
       const artistName = song.artist.name
+      const artistPicture = song.artist.picture_xl
       const albumArt = song.album.cover_medium
       const albumId = song.album.id
 
@@ -56,7 +62,9 @@ const dzSearch = (query) => {
           }
 
           return fetch(`https://deezerdevs-deezer.p.rapidapi.com/genre/${genreId}`, GET_CONFIG)
-          .then(res => res.json())
+          .then(res => {
+            return res.json()
+          })
           .then(genre => {
 
             let genreName
@@ -66,13 +74,27 @@ const dzSearch = (query) => {
               genreName = genre.name
             }
 
-            displayResults(artistId, songTitle, artistName, albumArt, genreName, genreId, cardId); 
+            $('#loading-text').remove() 
 
-            // cardSubmit(); 
+            displayResults(artistId, songTitle, artistName, artistPicture, albumArt, genreName, genreId,cardId); 
+
+            clearSearchAvail()
+
           })
       })
    })
  })
+}
+
+$('#clear-search').hide() // on page load
+
+const clearSearchAvail = function() {
+  $('#clear-search').show()
+  $('#clear-search').on('click', function() {
+    $('.search-results').empty() 
+    $(this).hide() 
+    $('.results-input').val("");
+  })
 }
 
 
@@ -83,13 +105,13 @@ $('.result-box').submit(function(e) {
 })
 
 
-
 $('.search-results').on('click', 'div.result-card', function(e) {
   e.preventDefault() 
   const nearestId = $(e.target).closest(".result-card").attr("id")
   const dzArtistId = $(`#${nearestId}`).find("input.dz-artist-id").val()
   const title = $(`#${nearestId}`).find("input.song-title").val()
   const artist = $(`#${nearestId}`).find("input.artist-name").val()
+  const artistPicture = $(`#${nearestId}`).find("input.artist-picture").val()
   const albumArt = $(`#${nearestId}`).find("input.album-art").val()
   const genre = $(`#${nearestId}`).find("input.genre-name").val()
   const dzGenreId = $(`#${nearestId}`).find("input.dz-genre-id").val()
@@ -103,6 +125,7 @@ $('.search-results').on('click', 'div.result-card', function(e) {
       dzArtistId: dzArtistId, 
       title: title, 
       artist: artist, 
+      artistPicture: artistPicture,
       albumArt: albumArt, 
       genre: genre, 
       dzGenreId: dzGenreId

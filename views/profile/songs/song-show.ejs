@@ -29,5 +29,8 @@
     <label for="listenedTo">Yes</label><br>
     <input type="submit" value="Change status">
   </form>
+<form action="/profile/songs/<%= song.id %>?_method=DELETE" method="POST">
+  <input type="submit" value="Delete this song">
+</form> 
 </body>
 </html>

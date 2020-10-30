@@ -40,7 +40,8 @@ router.post('/search', async (req, res) => {
       const createdArtist = await db.Artist.create({
         dzArtistId: req.body.dzArtistId,
         name: req.body.artist,
-        genre: req.body.genre
+        genre: req.body.genre, 
+        artistPicture: req.body.artistPicture
       })
 
       req.body.artist = createdArtist._id
@@ -86,7 +87,8 @@ router.post('/search', async (req, res) => {
       const createdArtist = await db.Artist.create({
         dzArtistId: req.body.dzArtistId,
         name: req.body.artist,
-        genre: req.body.genre
+        genre: req.body.genre, 
+        artistPicture: req.body.artistPicture
       })
     
       req.body.artist = createdArtist
@@ -102,7 +104,7 @@ router.post('/search', async (req, res) => {
     } 
 
     res.send('temp string')
-    
+
   } catch (error) {
     console.log(error)
     res.send( { message: 'Internal Server Error'} )
