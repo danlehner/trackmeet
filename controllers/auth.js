@@ -24,7 +24,7 @@ router.post('/register', async (req, res) => {
     
     await db.User.create(req.body)
 
-    res.redirect('/login')
+    res.redirect('/auth/login')
 
   } catch (error) {
     console.log(error)
@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-  res.send('this is the login page')
+  res.render('auth/login')
 })
 
 router.post('/login', async (req, res) => { 
@@ -56,6 +56,8 @@ router.post('/login', async (req, res) => {
     }
 
     res.redirect('/profile')
+
+    console.log(foundUser)
     
   } catch (error) {
     console.log(error)
@@ -67,3 +69,5 @@ router.delete('/logout', async (req, res) => {
   await req.session.destroy() 
   res.redirect('/')
 })
+
+module.exports = router

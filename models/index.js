@@ -20,10 +20,10 @@ mongoose.connection.on("disconnect", function (event) {
   console.log("mongodb disconnected", event);
 });
 
-  module.exports = {
-    User: require('./User'),
-    Artist: require('./Artist'), 
-    Genre: require('./Genre'),
-    Song: require('./Song'),
-    User: require('./User')
-  }
+module.exports = {
+  User: require('./User'),
+  Artist: require('./Artist'), 
+  Genre: require('./Genre'),
+  Song: require('./Song'),
+  User: require('./User')
+}
