@@ -4,9 +4,11 @@
   "description": "An app focused on conscientious music listening utilizing Deezer's API",
   "main": "server.js",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "connect-mongo": "^3.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.10",
     "node-fetch": "^2.6.1",
