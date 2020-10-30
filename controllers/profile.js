@@ -28,6 +28,37 @@ router.get('/', async (req, res) => {
   
 })
 
+router.delete('/:songID', async (req, res) => {
+
+  try {
+
+    const deletedSong = await db.Song.findByIdAndDelete(req.params.songID)
+    const artist = await db.Artist.findById(deletedSong.artist)
+    const genre = await db.Genre.findById(deletedSong.genre)
+
+    artist.songs.remove(deletedSong)
+    genre.songs.remove(deletedSong)
+
+    if (!artist.songs.length) {
+      await db.Artist.findByIdAndDelete(artist._id)
+    } else {
+      artist.save()
+    }
+
+    if (!genre.artists.length) {
+      await db.Genre.findByIdAndDelete(genre._id)
+    } else {
+      genre.save()
+    }
+
+    res.redirect('/profile/')
+    
+  } catch (error) {
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
+  }
+})
+
 router.get('/edit', (req, res) => {
   res.render('profile/edit.ejs')
 })
@@ -183,24 +214,6 @@ router.delete('/songs/:songID', async (req, res) => {
   }
 })
 
-// router.get('/songs/:songID/edit', async (req, res) => {
-
-//   try {
-
-//     const foundSong = await db.Artist.findById(req.params.songID)
-
-//     context = {
-//       songs: foundSong
-//     }
-   
-//     res.render('profile/songs/song-edit.ejs')
-    
-//   } catch (error) {
-
-//     console.log(error)
-//     res.send( { message: 'Internal Server Error'} )
-//   }
-// })
 
 router.put('/songs/:songID/edit', async (req, res) => {
   // determine what the req object is (either testimony or listenedTo)
