@@ -7,6 +7,10 @@
   <title>Genre Show</title>
 </head>
 <body>
+
+  <%- include('../../partials/nav') %>
+
+  
   <h1><%= genre.name %></h1>
   <h3>Artists</h3>
   <% genre.artists.forEach(artist => { %>

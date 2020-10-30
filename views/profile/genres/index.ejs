@@ -7,6 +7,10 @@
   <title>Genres</title>
 </head>
 <body>
+
+  <%- include('../../partials/nav') %>
+
+  
   <h1>My Genres</h1>
   <% allGenres.map(genre => { %>
     <a href="/profile/genres/<%= genre._id %>">

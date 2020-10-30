@@ -7,6 +7,10 @@
   <title>Artists</title>
 </head>
 <body>
+
+  <%- include('../../partials/nav') %>
+
+  
   <h1>This is the Artists page</h1>
   <% allArtists.map(artist => { %>
    <a href="/profile/artists/<%= artist._id %>">

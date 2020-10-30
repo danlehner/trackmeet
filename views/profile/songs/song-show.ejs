@@ -9,6 +9,9 @@
   <title>Song Show</title>
 </head>
 <body>
+
+  <%- include('../../partials/nav') %>
+
   <h1>"<%= song.title %>"</h1>
   <h2><%= artist.name %><span style="color: red; font-size: .75em;">&nbsp;(<%= genre.name %>)</span></h2>
   <img src="<%= song.albumArt %>" width="300" />
