@@ -45,7 +45,7 @@ router.delete('/:songID', async (req, res) => {
       artist.save()
     }
 
-    if (!genre.artists.length) {
+    if (!genre.songs.length) {
       await db.Genre.findByIdAndDelete(genre._id)
     } else {
       genre.save()

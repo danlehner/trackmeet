@@ -9,6 +9,19 @@ $('.testimony-edit').on('click', function() {
 })
 
 $('.testimony-edit-submit').on('click', function() {
-   const elm = $(".testimony-edit")[0].innerHTML
-   console.log(elm)
+   const elm = $(".testimony-edit").val()
+   const songId = window.location.href.split('/').pop()
+   fetch(`/profile/songs/${songId}/edit`, {
+    method: "PUT", 
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      testimony: elm
+    })
+  })
+   .then(res => {
+    const elmCont = $('#song-testimony')[0]
+    $(elmCont).html(`<p id="song-testimony">${elm}</p>`)
+   })
 })
