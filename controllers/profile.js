@@ -197,7 +197,6 @@ router.put('/songs/:songID/edit', async (req, res) => {
   }
 
   const updatedSong = await db.Song.findByIdAndUpdate(req.params.songID, updatedData, { new: true})
-  console.log(updatedSong)
   res.redirect(`/profile/songs/${updatedSong._id}`)
 })
 

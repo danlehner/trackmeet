@@ -30,8 +30,6 @@ const displayResults = function(
     </form>
   </div>
   `)
-  
-  // console.log(dzArtistId, title, artist, albumArt, genre, dzGenreId)
 }
 
 const dzSearch = (query) => {
