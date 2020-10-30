@@ -39,6 +39,15 @@ const authRequired = function(req, res, next) {
 
 /* CONTROLLER ROUTING */
 
+app.get('/', (req, res) => {
+
+  const context = {
+    user: req.session.currentUser
+  }
+
+  res.render('/profile', context)
+})
+
 // set up app.get for '/' once some of the other issues have been taken care of
 app.use('/', controllers.home)
 app.use('/profile', controllers.profile)
