@@ -7,10 +7,11 @@
   <title>Songs</title>
 </head>
 <body>
-  <h1>This is the Songs page</h1>
+  <h1>Complete Songs</h1>
   <ul>
     <% allSongs.map(song => { %>
       <a href="/profile/songs/<%= song._id %>">
+        <img src="<%= song.artistPicture %>" alt="" width="50">
         <li><%= song.title %></li>
       </a>
     <% }) %> 
