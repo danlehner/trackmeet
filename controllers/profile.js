@@ -134,9 +134,13 @@ router.get('/songs/:songID', async (req, res) => {
 
   try {
     const foundSong = await db.Song.findById(req.params.songID)
+    const foundArtist = await db.Artist.findById(foundSong.artist)
+    const foundGenre = await db.Genre.findById(foundArtist.genre)
 
      context = {
-       song: foundSong
+       song: foundSong, 
+       artist: foundArtist, 
+       genre: foundGenre
      }
 
     res.render('profile/songs/song-show.ejs', context)
@@ -164,7 +168,37 @@ router.get('/songs/:songID/edit', async (req, res) => {
     console.log(error)
     res.send( { message: 'Internal Server Error'} )
   }
+})
 
+router.put('/songs/:songID/edit', async (req, res) => {
+  // determine what the req object is (either testimony or listenedTo)
+  let updatedData
+
+  if (req.body.testimony) {
+    updatedData = {
+      $set: {
+        testimony: req.body.testimony
+      }
+    }
+  } else {
+    if (req.body.listenedTo == 'on') {
+      updatedData = {
+        $set: {
+          listenedTo: true
+        }
+      }
+    } else {
+      updatedData = {
+        $set: {
+          listenedTo: false
+        }
+      }
+    }
+  }
+
+  const updatedSong = await db.Song.findByIdAndUpdate(req.params.songID, updatedData, { new: true})
+  console.log(updatedSong)
+  res.redirect(`/profile/songs/${updatedSong._id}`)
 })
 
 module.exports = router

@@ -54,8 +54,6 @@ router.post('/search', async (req, res) => {
       await createdArtist.save() 
       await foundGenre.save() 
 
-      console.log(req.body)
-
      } else if (foundArtist) {
 
       req.body.artist = foundArtist._id
@@ -102,6 +100,9 @@ router.post('/search', async (req, res) => {
       await createdArtist.save()
       await createdGenre.save()
     } 
+
+    res.send('temp string')
+    
   } catch (error) {
     console.log(error)
     res.send( { message: 'Internal Server Error'} )

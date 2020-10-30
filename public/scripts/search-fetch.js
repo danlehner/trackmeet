@@ -27,7 +27,6 @@ const displayResults = function(
       <input class="album-art" type="hidden" name="albumArt" value="${albumArt}">
       <input class="genre-name" type="text" name="genre" value="${genre}"><br>
       <input class="dz-genre-id" type="hidden" name="dzGenreId" value="${dzGenreId}">
-     <input id="${cardId}-submit" class="add-card" type="submit" value="Add" />
     </form>
   </div>
   `)
@@ -97,20 +96,25 @@ $('.search-results').on('click', 'div.result-card', function(e) {
   const genre = $(`#${nearestId}`).find("input.genre-name").val()
   const dzGenreId = $(`#${nearestId}`).find("input.dz-genre-id").val()
 
-  console.log(dzArtistId, title, artist, albumArt, genre, dzGenreId)
-
-  // fetch('/search', {
-  //   method: "POST", 
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   }, 
-  //   body: {
-  //     dzArtistId: dzArtistId, 
-  //     title: title, 
-  //     artist: artist, 
-  //     albumArt: albumArt, 
-  //     genre: genre, 
-  //     dzGenreId: dzGenreId
-  //   }
-  // })
+  fetch('/search', {
+    method: "POST", 
+    headers: {
+      "Content-Type": "application/json"
+    }, 
+    body: JSON.stringify({
+      dzArtistId: dzArtistId, 
+      title: title, 
+      artist: artist, 
+      albumArt: albumArt, 
+      genre: genre, 
+      dzGenreId: dzGenreId
+    })
+  })
+  .then(response => {
+    $(`#${nearestId}`).addClass('blue')
+    setTimeout(() => {
+      $(`#${nearestId}`).remove()
+      $('.collection-link').show()
+    }, 1000)
+  })
 })
