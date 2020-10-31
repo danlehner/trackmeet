@@ -20,16 +20,16 @@ const displayResults = function(
   
   $('.search-results').append(`  
   <div id=${cardId} class="card-body result-card">
-   <form class="card-form" action="/search" method="POST">
-    <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
+   <div class="card-content">
+      <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
       <p id="dz-artist-id" class="hidden">${dzArtistId}</p>
-      <h5 id="title" class="card-title">${title}</h5>
-      <h6 id="artist" class="card-subtitle">${artist}</h6>
-      <p id="album-art" class="hidden">${albumArt}><p>
-      <p id="artist-picture" class="hidden">${artistPicture}"></p>
-      <h6 id="genre" class="card-text">${genre}</h6>
+      <h3 id="title" class="card-title">${title}</h3>
+      <h5 id="artist" class="card-subtitle">${artist}</h5>
+      <p id="album-art" class="hidden">${albumArt}</p>
+      <p id="artist-picture" class="hidden">${artistPicture}</p>
+      <h5 class="card-genre" id="genre">${genre}</h5>
       <p id="dz-genre-id" class="hidden">${dzGenreId}</p>
-    </form>
+    </div>
   </div>
   `)
 

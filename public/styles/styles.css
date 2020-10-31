@@ -1,14 +1,16 @@
+@font-face {
+  font-family: "Clarendon Regular"; 
+  src: url('../fonts/clarendon-regular.otf') format("opentype");
+}
+
+h1, h2, h3 {
+  font-family: "Clarendon Regular"; 
+}
+
 .jumbotron {
   background-image: url('../assets/record-collectors.jpeg'); 
   background-size: cover;
   background-position: bottom right;
-}
-
-.card-body {
-  max-width: 250px;
-  border: 1px solid black;
-  padding: 20px;
-  margin: 20px; 
 }
 
 .search-hero h1 {
@@ -19,14 +21,53 @@
   display: none;
 }
 
-.blue {
-  background-color: blue;
-  transition: .2s ease-in; 
-}
 
 .collection-link {
   margin-top: 20px; 
 }
 
+/* --- RESULT CARD --- */
 
+.result-card {
+  position: relative; 
+  box-shadow: 8px 8px black;
+}
 
+.blue {
+  background-color: blue;
+  transition: .2s ease-in; 
+}
+
+.card-body {
+  max-width: 250px;
+  border: 1px solid black;
+  padding: 20px;
+  margin: 10px; 
+}
+
+.result-card h3 {
+  background-color: red; 
+  color: #fafafa; 
+  font-size: 20px; 
+  padding: 10px; 
+}
+
+.artist-name {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.result-card img {
+  border: 1px solid black; 
+}
+
+.card-genre {
+  position: absolute;
+  top: 0px;
+  padding: 10px;
+  margin: 0px;
+  right: 0px;
+  background-color: lightblue;
+  color: black;
+  border: 0px;
+}
