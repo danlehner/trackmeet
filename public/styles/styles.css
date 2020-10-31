@@ -1,7 +1,18 @@
+.jumbotron {
+  background-image: url('../assets/record-collectors.jpeg'); 
+  background-size: cover;
+  background-position: bottom right;
+}
+
 .card-body {
   max-width: 250px;
   border: 1px solid black;
   padding: 20px;
+  margin: 20px; 
+}
+
+.search-hero h1 {
+  color: #fafafa
 }
 
 .hidden {
@@ -13,4 +24,9 @@
   transition: .2s ease-in; 
 }
 
-/*# sourceMappingURL=styles.css.map */
+.collection-link {
+  margin-top: 20px; 
+}
+
+
+

@@ -6,21 +6,19 @@
   <%- include('../partials/nav.ejs') %>
 
   <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-1">Search</h1>
-      <h4>Start typing in some songs you love!</h4>
+    <div class="container search-hero">
+      <h1 class="display-1" style="color: red;">Search</h1>
+      <h4 class="p-3 mb-2 bg-danger text-white" style="width: 450px;">Start typing in some songs you love!</h4>
       <form style="margin-top: 30px;" class="result-box" action="">
         <input class="results-input" type="text">
         <input class="btn btn-primary" type="submit">
       </form>
         <button id="clear-search" class="btn btn-secondary">Clear Search</button>
-    </div>
+        <div class="collection-link hidden">
+          <h4>Check out your <a href="profile">collection!</a></h4>
+         </div>
+    </div>  
   </div>
-
-   <div class="collection-link hidden">
-    <p>Check out your <a href="profile">collection!</a></p>
-   </div>
-
  <div class="container">
   <div class="row justify-content-md-center search-results">
   </div>
