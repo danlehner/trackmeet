@@ -22,13 +22,13 @@ const displayResults = function(
   <div id=${cardId} class="card-body result-card">
    <form class="card-form" action="/search" method="POST">
     <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
-      <input class="dz-artist-id" type="hidden" name="dzArtistId" value="${dzArtistId}"><br>
-      <input class="card-title song-title" type="text" name="title" value="${title}"><br>
-      <input class="artist-name" type="text" name="artist" value="${artist}"><br>
-      <input class="album-art" type="hidden" name="albumArt" value="${albumArt}"><br>
-      <input class="artist-picture" type="hidden" name="artistPicture" value="${artistPicture}"><br>
-      <input class="genre-name" type="text" name="genre" value="${genre}"><br>
-      <input class="dz-genre-id" type="hidden" name="dzGenreId" value="${dzGenreId}">
+      <p id="dz-artist-id" class="hidden">${dzArtistId}</p>
+      <h5 id="title" class="card-title">${title}</h5>
+      <h6 id="artist" class="card-subtitle">${artist}</h6>
+      <p id="album-art" class="hidden">${albumArt}><p>
+      <p id="artist-picture" class="hidden">${artistPicture}"></p>
+      <h6 id="genre" class="card-text">${genre}</h6>
+      <p id="dz-genre-id" class="hidden">${dzGenreId}</p>
     </form>
   </div>
   `)
@@ -104,17 +104,19 @@ $('.result-box').submit(function(e) {
   dzSearch(searchVal); 
 })
 
+// const dzArtistId = $(`#${nearestId}`).find("input.dz-artist-id").val()
 
 $('.search-results').on('click', 'div.result-card', function(e) {
   e.preventDefault() 
   const nearestId = $(e.target).closest(".result-card").attr("id")
-  const dzArtistId = $(`#${nearestId}`).find("input.dz-artist-id").val()
-  const title = $(`#${nearestId}`).find("input.song-title").val()
-  const artist = $(`#${nearestId}`).find("input.artist-name").val()
-  const artistPicture = $(`#${nearestId}`).find("input.artist-picture").val()
-  const albumArt = $(`#${nearestId}`).find("input.album-art").val()
-  const genre = $(`#${nearestId}`).find("input.genre-name").val()
-  const dzGenreId = $(`#${nearestId}`).find("input.dz-genre-id").val()
+  const dzArtistId = $('#dz-artist-id')[0].innerHTML
+  const title = $('#title')[0].innerHTML
+  const artist = $('#artist')[0].innerHTML
+  const artistPicture = $('#artist-picture')[0].innerHTML
+  const albumArt = $('#album-art')[0].innerHTML
+  const genre = $('#genre')[0].innerHTML
+  const dzGenreId = $('#dz-genre-id')[0].innerHTML
+
 
   fetch('/search', {
     method: "POST", 
