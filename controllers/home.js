@@ -61,7 +61,8 @@ router.post('/search', async (req, res) => {
 
       const createdGenre = await db.Genre.create({
         dzGenreId: req.body.dzGenreId,
-        name: req.body.genre
+        name: req.body.genre, 
+        genrePicture: req.body.genrePicture
       })
 
       req.body.genre = createdGenre._id
@@ -79,7 +80,8 @@ router.post('/search', async (req, res) => {
 
       const createdGenre = await db.Genre.create({
         dzGenreId: req.body.dzGenreId,
-        name: req.body.genre
+        name: req.body.genre, 
+        genrePicture: req.body.genrePicture
       })
     
       req.body.genre = createdGenre

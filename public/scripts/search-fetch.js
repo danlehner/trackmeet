@@ -14,7 +14,8 @@ const displayResults = function(
   artist, 
   albumArt, 
   artistPicture,
-  genre, 
+  genre,
+  genrePicture, 
   dzGenreId, 
   cardId) {
   
@@ -27,6 +28,7 @@ const displayResults = function(
       <h5 id="artist" class="card-subtitle artist-name">${artist}</h5>
       <p id="album-art" class="hidden">${albumArt}</p>
       <p id="artist-picture" class="hidden">${artistPicture}</p>
+      <p id="genre-picture" class="hidden">${genrePicture}</p>
       <h5 class="card-genre" id="genre">${genre}</h5>
       <p id="dz-genre-id" class="hidden">${dzGenreId}</p>
     </div>
@@ -40,7 +42,6 @@ const dzSearch = (query) => {
   return fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=track:"${query}"`, GET_CONFIG)
    .then(res => res.json())
    .then(json => {
-     console.log(json.data)
      json.data.map(song => {
       const cardId = song.id
       const artistId = song.artist.id
@@ -67,6 +68,8 @@ const dzSearch = (query) => {
           })
           .then(genre => {
 
+            const genrePicture = genre.picture_xl
+
             let genreName
             if (genreId === 0) {
               genreName = 'Misc.'
@@ -76,7 +79,9 @@ const dzSearch = (query) => {
 
             $('#loading-text').remove() 
 
-            displayResults(artistId, songTitle, artistName, artistPicture, albumArt, genreName, genreId,cardId); 
+
+            displayResults(artistId, songTitle, artistName, artistPicture, albumArt, genreName, genrePicture, genreId, cardId); 
+
 
             clearSearchAvail()
 
@@ -115,6 +120,7 @@ $('.search-results').on('click', 'div.result-card', function(e) {
   const artistPicture = $('#artist-picture')[0].innerHTML
   const albumArt = $('#album-art')[0].innerHTML
   const genre = $('#genre')[0].innerHTML
+  const genrePicture = $('#genre-picture')[0].innerHTML
   const dzGenreId = $('#dz-genre-id')[0].innerHTML
 
 
@@ -130,6 +136,7 @@ $('.search-results').on('click', 'div.result-card', function(e) {
       artistPicture: artistPicture,
       albumArt: albumArt, 
       genre: genre, 
+      genrePicture: genrePicture,
       dzGenreId: dzGenreId
     })
   })

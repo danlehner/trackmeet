@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const genreSchema = new mongoose.Schema({
   dzGenreId: { type: String, required: true }, 
   name: { type: String, required: true }, 
+  genrePicture: { type: String },
   artists: [
     {
       type: mongoose.Schema.Types.ObjectId, 
