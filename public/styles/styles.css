@@ -16,13 +16,29 @@ h1, h2, h3 {
 }
 
 .jumbotron {
+  min-height: 350px;  
+}
+
+.songs-jumbotron {
+  background-image: url('../assets/record.jpeg'); 
+  background-size: cover;
+  background-position: center;
+}
+
+.artists-jumbotron {
+  background-image: url('../assets/record-store-artists.jpeg'); 
+  background-size: cover;
+}
+
+.search-jumbotron {
   background-image: url('../assets/record-collectors.jpeg'); 
   background-size: cover;
   background-position: bottom right;
 }
 
-.search-hero h1 {
-  color: #fafafa
+.genres-jumbotron {
+  background-image: url('../assets/record-store-genre.jpeg');
+  background-size: cover; 
 }
 
 .hidden {

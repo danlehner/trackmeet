@@ -5,7 +5,12 @@
 
   <%- include('../../partials/nav') %>
 
-  <h1>Complete Songs</h1>
+  <div class="jumbotron songs-jumbotron">
+    <div class="container search-hero">
+      <h1 class="display-1 text-white">My Songs</h1>
+    </div>
+  </div>
+
   <ul>
     <% allSongs.map(song => { %>
       <a href="/profile/songs/<%= song._id %>">

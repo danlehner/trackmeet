@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../../partials/head.ejs', { title: 'My Genres'}) %>
+  <%- include('../../partials/head', { title: 'My Genres'}) %>
+
 <body>
 
   <%- include('../../partials/nav') %>
 
-  
-  <h1>My Genres</h1>
+  <div class="jumbotron genres-jumbotron">
+    <div class="container search-hero">
+      <h1 class="display-1 text-white">My Genres</h1>
+    </div>
+  </div>
+
+
   <% allGenres.map(genre => { %>
     <a href="/profile/genres/<%= genre._id %>">
       <p><%= genre.name %></p>
