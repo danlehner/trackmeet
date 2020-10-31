@@ -5,19 +5,24 @@
 
   <%- include('../partials/nav.ejs') %>
 
-  <h1>Search</h1>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-1">Search</h1>
+      <h4>Start typing in some songs you love!</h4>
+      <form style="margin-top: 30px;" class="result-box" action="">
+        <input class="results-input" type="text">
+        <input class="btn btn-primary" type="submit">
+      </form>
+        <button id="clear-search" class="btn btn-secondary">Clear Search</button>
+    </div>
+  </div>
 
-   <form style="margin-top: 30px;" class="result-box" action="">
-     <input class="results-input" type="text">
-     <input type="submit">
-   </form>
-   <button id="clear-search">Clear Search</button>
    <div class="collection-link hidden">
     <p>Check out your <a href="profile">collection!</a></p>
    </div>
 
  <div class="container">
-  <div class="row search-results">
+  <div class="row justify-content-md-center search-results">
   </div>
  </div>
 

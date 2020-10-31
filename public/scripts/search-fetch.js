@@ -20,7 +20,7 @@ const displayResults = function(
   
   $('.search-results').append(`  
   <div id=${cardId} class="card-body result-card">
-    <form class="card-form" action="/search" method="POST">
+   <form class="card-form" action="/search" method="POST">
     <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
       <input class="dz-artist-id" type="hidden" name="dzArtistId" value="${dzArtistId}"><br>
       <input class="card-title song-title" type="text" name="title" value="${title}"><br>
@@ -36,7 +36,7 @@ const displayResults = function(
 }
 
 const dzSearch = (query) => {
-  $('.search-results').append(`<p id="loading-text">Loading...</p>`)
+  $('.search-results').append(`<h4 id="loading-text" class="text-center">Loading...</h4>`)
   return fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=track:"${query}"`, GET_CONFIG)
    .then(res => res.json())
    .then(json => {
