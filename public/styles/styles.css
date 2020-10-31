@@ -5,6 +5,14 @@
 
 h1, h2, h3 {
   font-family: "Clarendon Regular"; 
+  text-shadow: 2px 2px black; 
+}
+
+.search-description {
+  width: 450px; 
+  background-color: red; 
+  line-height: 27px;
+  box-shadow: 8px 8px black; 
 }
 
 .jumbotron {

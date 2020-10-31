@@ -7,19 +7,25 @@
 
   
   <h1>Profile</h1>
-  <h2>Genres</h2>
+  <a href="/profile/genres">
+    <h2>Genres</h2>
+  </a>
   <% genres.forEach(genre => { %>
     <a href="/profile/genres/<%= genre._id %>">
       <p><%= genre.name %></p>
     </a>
   <% }) %>
-  <h2>Artists</h2>
+  <a href="/profile/artists">
+    <h2>Artists</h2>
+  </a>
   <% artists.forEach(artist => { %>
     <a href="/profile/artists/<%= artist._id %>">
       <p><%= artist.name %></p>
     </a>
     <% }) %>
-  <h2>Songs</h2>
+    <a href="/profile/songs">
+      <h2>Songs</h2>
+    </a>
   <% songs.forEach(song => { %>
     <a href="/profile/songs/<%= song._id %>">
       <p><%= song.title %></p>

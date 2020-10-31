@@ -118,26 +118,26 @@ $('.search-results').on('click', 'div.result-card', function(e) {
   const dzGenreId = $('#dz-genre-id')[0].innerHTML
 
 
-  // fetch('/search', {
-  //   method: "POST", 
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   }, 
-  //   body: JSON.stringify({
-  //     dzArtistId: dzArtistId, 
-  //     title: title, 
-  //     artist: artist, 
-  //     artistPicture: artistPicture,
-  //     albumArt: albumArt, 
-  //     genre: genre, 
-  //     dzGenreId: dzGenreId
-  //   })
-  // })
-  // .then(response => {
+  fetch('/search', {
+    method: "POST", 
+    headers: {
+      "Content-Type": "application/json"
+    }, 
+    body: JSON.stringify({
+      dzArtistId: dzArtistId, 
+      title: title, 
+      artist: artist, 
+      artistPicture: artistPicture,
+      albumArt: albumArt, 
+      genre: genre, 
+      dzGenreId: dzGenreId
+    })
+  })
+  .then(response => {
     $(`#${nearestId}`).addClass('click-translate')
     setTimeout(() => {
       $(`#${nearestId}`).remove()
       $('.collection-link').show()
     }, 200)
-  // })
+  })
 })
