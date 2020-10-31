@@ -11,13 +11,17 @@
     </div>
   </div>
 
-  <ul>
+  <div class="row justify-content-md-center search-results">
     <% allSongs.map(song => { %>
-      <a href="/profile/songs/<%= song._id %>">
-        <img src="<%= song.artistPicture %>" alt="" width="50">
-        <li><%= song.title %></li>
-      </a>
+        <div class="card-body result-card rc-small">
+            <img src="<%= song.artistPicture %>" alt="<%= song.title%>" class="card-img-top" width="50">
+            <a href="profile/songs/<%= song._id %>">
+              <h3 class="card-title ct-small"><%= song.title %></h3>
+            </a>
+        </div>
     <% }) %> 
-  </ul>
+  </div>
+
+
 </body>
 </html>

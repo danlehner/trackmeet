@@ -57,6 +57,23 @@ h1, h2, h3 {
   box-shadow: 8px 8px black;
 }
 
+.rc-small {
+  max-width: 150px !important;
+  max-height: 200px;
+}
+
+.rc-small img {
+  width: 100px;
+}
+
+.rc-small h3 {
+  max-width: 100px; 
+}
+
+.ct-small {
+  font-size: 12px !important; 
+}
+
 .click-translate {
   animation-name: click; 
   animation-duration: .2s;
