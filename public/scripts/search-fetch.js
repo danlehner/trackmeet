@@ -24,7 +24,7 @@ const displayResults = function(
       <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
       <p id="dz-artist-id" class="hidden">${dzArtistId}</p>
       <h3 id="title" class="card-title">${title}</h3>
-      <h5 id="artist" class="card-subtitle">${artist}</h5>
+      <h5 id="artist" class="card-subtitle artist-name">${artist}</h5>
       <p id="album-art" class="hidden">${albumArt}</p>
       <p id="artist-picture" class="hidden">${artistPicture}</p>
       <h5 class="card-genre" id="genre">${genre}</h5>
@@ -118,26 +118,26 @@ $('.search-results').on('click', 'div.result-card', function(e) {
   const dzGenreId = $('#dz-genre-id')[0].innerHTML
 
 
-  fetch('/search', {
-    method: "POST", 
-    headers: {
-      "Content-Type": "application/json"
-    }, 
-    body: JSON.stringify({
-      dzArtistId: dzArtistId, 
-      title: title, 
-      artist: artist, 
-      artistPicture: artistPicture,
-      albumArt: albumArt, 
-      genre: genre, 
-      dzGenreId: dzGenreId
-    })
-  })
-  .then(response => {
-    $(`#${nearestId}`).addClass('blue')
+  // fetch('/search', {
+  //   method: "POST", 
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   }, 
+  //   body: JSON.stringify({
+  //     dzArtistId: dzArtistId, 
+  //     title: title, 
+  //     artist: artist, 
+  //     artistPicture: artistPicture,
+  //     albumArt: albumArt, 
+  //     genre: genre, 
+  //     dzGenreId: dzGenreId
+  //   })
+  // })
+  // .then(response => {
+    $(`#${nearestId}`).addClass('click-translate')
     setTimeout(() => {
       $(`#${nearestId}`).remove()
       $('.collection-link').show()
-    }, 1000)
-  })
+    }, 200)
+  // })
 })
