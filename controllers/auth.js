@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-  res.send('this is the login page')
+  res.render('auth/login')
 })
 
 router.post('/login', async (req, res) => { 
