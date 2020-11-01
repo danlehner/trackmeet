@@ -8,7 +8,12 @@
   <div class="container show-container mt-5 mb-5">
     <div class="row h-100">
       <div class="col pb-5" style="background-color: red;">
-        <h2 class="text-white mt-3 align-self-center">"<%= song.title %>"</h2>
+        <a href="/profile/artists/<%= artist._id %>">
+          <h3 class="text-white mt-3 align-self-center">
+            <%= artist.name %>
+          </h3>
+        </a>
+        <h1 class="text-white">"<%= song.title %>"</h1>
         <a href="/profile/genres/<%= genre._id %>">
           <h5 class="text-white">(<%= genre.name %>)</h5>
         </a>
