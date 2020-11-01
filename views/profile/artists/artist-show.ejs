@@ -5,17 +5,41 @@
 
   <%- include('../../partials/nav') %>
 
+  <div class="container show-container mt-5 mb-5">
+    <div class="row h-100">
+      <div class="col pb-5" style="background-color: red;">
+        <h1 class="text-white mt-3 align-self-center"><%= artist.name %></h1>
+        <a href="/profile/genres/<%= genre._id %>">
+          <h5 class="text-white">(<%= genre.name %>)</h5>
+        </a>
+        <img class="rounded-circle mt-3" src="<%= artist.artistPicture %>" width="100" />
+      </div>
+      <div class="col pl-4 border border-dark">
+        <% if (artist.songs.length === 0) { %>
+          <p>Sorry, seems like this artist has no songs!</p>
+        <% } %>
+        <h3 class="mt-4 mb-3" style="color: #007bff;">Songs</h3>
+        <% artist.songs.forEach(song => { %>
+          <div class="card mb-3 border border-dark" style="max-width: 350px;">
+            <div class="row no-gutters">
+              <div class="col-md-2">
+                <a href="/profile/songs/<%= song._id %>">
+                  <img class="card-img" src="<%= song.artistPicture %>" alt="<%= song.title %>" width="50">
+                </a>
+              </div>
+              <div class="col-md-8">
+                <a href="/profile/songs/<%= song._id %>">
+                  <h5 class="card-text mt-2 ml-2">"<%= song.title %>"</h5>
+                </a>
+              </div>
+            </div>
+          </div>
+        <%  }) %>
+      </div>
+    
+    </div>
+  </div>
   
-  <h1><%= artist.name %></h1>
-  <img src="<%= artist.artistPicture %>" width="300" />
 
-  <% if (artist.songs.length === 0) { %>
-    <p>Sorry, seems like this artist has no songs!</p>
-  <% } %>
-  <% artist.songs.forEach(song => { %>
-    <a href="/profile/songs/<%= song._id %>">
-      <h3><%= song.title %><span style="color: red; font-size: .75em;">&nbsp;(<%= genre.name %>)</span></h3>
-    </a>
-  <%  }) %>
 </body>
 </html>
