@@ -39,25 +39,21 @@ const authRequired = function(req, res, next) {
 
 /* CONTROLLER ROUTING */
 
+app.get('/', (req, res) => {
+   
+  const context = {
+    user: req.session.currentUser
+  }
+
+  res.render('home/index', context)
+})
+
 // set up app.get for '/' once some of the other issues have been taken care of
 app.use('/auth', controllers.auth)
 app.use('/profile', controllers.profile)
 app.use('/discovery', controllers.discovery)
 app.use('/', controllers.home)
 
-// app.get('/', (req, res) => {
-
-//   const context = {
-//     user: req.session.currentUser
-//   }
-
-//   res.render('home/index', context)
-// })
-
-// app.use('/auth', controllers.auth)
-// app.use('/profile', authRequired, controllers.profile)
-// app.use('/discovery', authRequired, controllers.discovery)
-// app.use('/', authRequired, controllers.home)
 
 // port listening
 app.listen(PORT, () => {

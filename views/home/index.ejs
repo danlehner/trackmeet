@@ -2,6 +2,17 @@
 <html lang="en">
   <%- include('../partials/head.ejs', { title: 'Track Meet'}) %>
 <body> 
-  <h1>This is the Home page</h1>
+
+ <% if (user) { %>
+
+  <p>logged in</p>
+
+ <% } else { %>
+
+  <p>logged out</p>
+  
+ <% } %>
+
+
 </body>
 </html>
