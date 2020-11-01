@@ -3,6 +3,17 @@
   src: url('../fonts/clarendon-regular.otf') format("opentype");
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap');
+
+body, html, p {
+  font-family: 'Josefin Sans', sans-serif !important;
+}
+
+a { 
+  color: inherit; 
+  text-decoration: none !important;
+} 
+
 h1, h2, h3 {
   font-family: "Clarendon Regular"; 
   text-shadow: 2px 2px black; 
@@ -13,6 +24,10 @@ h1, h2, h3 {
   background-color: red; 
   line-height: 27px;
   box-shadow: 8px 8px black; 
+}
+
+.show-container {
+  box-shadow: 10px 10px black; 
 }
 
 .jumbotron {
@@ -51,6 +66,10 @@ h1, h2, h3 {
 }
 
 /* --- RESULT CARD --- */
+
+.card, .card-img {
+  border-radius: 0px; 
+}
 
 .result-card {
   position: relative; 
