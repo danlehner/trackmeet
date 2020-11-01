@@ -56,6 +56,12 @@ h1, h2, h3 {
   background-size: cover; 
 }
 
+.profile-jumbotron {
+  background-image: url('../assets/record-profile.jpg'); 
+  background-size: cover; 
+  background-position: bottom;
+}
+
 .hidden {
   display: none;
 }
