@@ -24,7 +24,7 @@ router.post('/register', async (req, res) => {
     
     await db.User.create(req.body)
 
-    res.redirect('/auth/login')
+    res.redirect('/login')
 
   } catch (error) {
     console.log(error)

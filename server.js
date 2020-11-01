@@ -32,7 +32,7 @@ app.use(session({
 
 const authRequired = function(req, res, next) {
   if(!req.session.currentUser) {
-    return res.redirect("/login")
+    return res.redirect("login")
   }
   next(); 
 }
@@ -45,14 +45,14 @@ app.get('/', (req, res) => {
     user: req.session.currentUser
   }
 
-  res.render('home/index', context)
+  res.render('home/index.ejs', context)
 })
 
 // set up app.get for '/' once some of the other issues have been taken care of
-app.use('/auth', controllers.auth)
-app.use('/profile', controllers.profile)
-app.use('/discovery', controllers.discovery)
-app.use('/', controllers.home)
+app.use('/', controllers.auth)
+app.use('/search', authRequired, controllers.search)
+app.use('/profile', authRequired, controllers.profile)
+app.use('/discovery', authRequired, controllers.discovery)
 
 
 // port listening
