@@ -136,10 +136,12 @@ router.delete('/:songID', async (req, res) => {
 router.get('/genres', async (req, res) => {
   try {
 
-    const foundGenres = await db.Genre.find({})
+    // const foundGenres = await db.Genre.find({})
+    const user = await db.User.findById(req.session.currentUser.id).populate('genres')
   
     context = {
-      allGenres: foundGenres
+      // allGenres: foundGenres
+      user: user
     }
   
     res.render('profile/genres/index.ejs', context)
@@ -255,26 +257,52 @@ router.get('/songs/:songID', async (req, res) => {
 router.delete('/songs/:songID', async (req, res) => {
   try {
 
-    const deletedSong = await db.Song.findByIdAndDelete(req.params.songID)
-    const artist = await db.Artist.findById(deletedSong.artist)
-    const genre = await db.Genre.findById(deletedSong.genre)
+    // const deletedSong = await db.Song.findByIdAndDelete(req.params.songID)
+    // const artist = await db.Artist.findById(deletedSong.artist)
+    // const genre = await db.Genre.findById(deletedSong.genre)
 
-    artist.songs.remove(deletedSong)
-    genre.songs.remove(deletedSong)
+    const user = await db.User.findById(req.session.currentUser.id)
+     .populate('songs')
+     .populate('genres')
+     .populate('artists')
+
+    const songToDelete = await db.Song.findById({ _id: req.params.songID })
+
+    // remove the song from the users songs
+    // console.log("user's song", user.songs)
+    user.songs.remove(songToDelete)
+
+    // remove the song from the relevant artist
+    const artist = await db.Artist.findById(songToDelete.artist)
+    artist.songs.remove(songToDelete)
+
+    // remove the song from the relevant genre
+    const genre = await db.Genre.findById(songToDelete.genre)
+    genre.songs.remove(songToDelete)
+
+    // if an artist in the user's artists has no songs, delete the artist
+    // if a genre in the user's genres has no songs, delete the genre
+
+    artist.songs.remove(songToDelete)
+    genre.songs.remove(songToDelete)
 
     if (!artist.songs.length) {
       await db.Artist.findByIdAndDelete(artist._id)
+      user.artists.remove(artist)
     } else {
       artist.save()
     }
 
-    if (!genre.artists.length) {
+    if (!genre.songs.length) {
       await db.Genre.findByIdAndDelete(genre._id)
+      user.genres.remove(genre)
     } else {
       genre.save()
     }
 
-    res.redirect('/profile/songs')
+    user.save()
+
+    res.redirect('/profile/')
     
   } catch (error) {
     console.log(error)
