@@ -9,14 +9,16 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
 
-  console.log('server side response', req.body)
+  const user = await db.User.findById(req.session.currentUser.id)
+      .populate('artists')
+      .populate('genres')
+      .populate('songs')
 
-  try {
     const foundArtist = await db.Artist.findOne({ dzArtistId: req.body.dzArtistId})
     const foundGenre = await db.Genre.findOne({ dzGenreId: req.body.dzGenreId })
-    const user = await db.User.findById(req.session.currentUser.id)
 
-  
+  try {
+
     if (foundGenre && foundArtist) {
 
       req.body.genre = foundGenre._id
@@ -27,12 +29,11 @@ router.post('/', async (req, res) => {
       foundGenre.songs.push(createdSong)
       foundArtist.songs.push(createdSong)
 
-      user.genres.push(foundGenre)
-      user.artists.push(foundArtist)
       user.songs.push(createdSong)
 
       await foundArtist.save() 
       await foundGenre.save() 
+      await user.save()
 
     } else if (foundGenre) {
 
@@ -53,12 +54,12 @@ router.post('/', async (req, res) => {
       foundGenre.songs.push(createdSong)
       createdArtist.songs.push(createdSong)
 
-      user.genres.push(foundGenre)
       user.artists.push(createdArtist)
       user.songs.push(createdSong)
 
       await createdArtist.save() 
       await foundGenre.save() 
+      await user.save()
 
      } else if (foundArtist) {
 
@@ -79,13 +80,13 @@ router.post('/', async (req, res) => {
       foundArtist.songs.push(createdSong)
 
       user.genres.push(createdGenre)
-      user.artists.push(foundArtist)
       user.songs.push(createdSong)
 
       await createdGenre.save()
-      await foundArtist.save() 
+      await foundArtist.save()
+      await user.save() 
 
-     }  else {
+     } else {
 
       const createdGenre = await db.Genre.create({
         dzGenreId: req.body.dzGenreId,
@@ -116,7 +117,8 @@ router.post('/', async (req, res) => {
     
       await createdArtist.save()
       await createdGenre.save()
-    } 
+      await user.save()
+    }
 
     res.json({ message: "success"})
 

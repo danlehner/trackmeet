@@ -8,18 +8,22 @@ const db = require('../models')
 router.get('/', async (req, res) => {
   try {
 
-    const foundGenres = await db.Genre.find({})
-    const foundArtists = await db.Artist.find({})
-    const foundSongs = await db.Song.find({})
+    // const foundGenres = await db.Genre.find({})
+    // const foundArtists = await db.Artist.find({})
+    // const foundSongs = await db.Song.find({})
+
     const user = await db.User.findById(req.session.currentUser.id)
+      .populate('artists')
+      .populate('genres')
+      .populate('songs')
 
     context = {
-      genres: foundGenres,
-      artists: foundArtists, 
-      songs: foundSongs, 
-      user: user,
+      // genres: foundGenres,
+      // artists: foundArtists, 
+      // songs: foundSongs, 
+      user: user
     }
-    
+
     res.render('profile/index.ejs', context)
     
   } catch (error) {
@@ -77,23 +81,26 @@ router.delete('/:songID', async (req, res) => {
     const deletedSong = await db.Song.findByIdAndDelete(req.params.songID)
     const artist = await db.Artist.findById(deletedSong.artist)
     const genre = await db.Genre.findById(deletedSong.genre)
+    const user = await db.User.findById(req.session.currentUser.id)
 
-    artist.songs.remove(deletedSong)
-    genre.songs.remove(deletedSong)
+    console.log(user)
 
-    if (!artist.songs.length) {
-      await db.Artist.findByIdAndDelete(artist._id)
-    } else {
-      artist.save()
-    }
+    // artist.songs.remove(deletedSong)
+    // genre.songs.remove(deletedSong)
 
-    if (!genre.songs.length) {
-      await db.Genre.findByIdAndDelete(genre._id)
-    } else {
-      genre.save()
-    }
+    // if (!artist.songs.length) {
+    //   await db.Artist.findByIdAndDelete(artist._id)
+    // } else {
+    //   artist.save()
+    // }
 
-    res.redirect('/profile/')
+    // if (!genre.songs.length) {
+    //   await db.Genre.findByIdAndDelete(genre._id)
+    // } else {
+    //   genre.save()
+    // }
+
+    // res.redirect('/profile/')
     
   } catch (error) {
     console.log(error)

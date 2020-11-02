@@ -3,6 +3,7 @@
   <%- include('../partials/head.ejs', { title: 'Profile'}) %>
 <body>
 
+
   <%- include('../partials/nav') %>
 
   <div class="jumbotron profile-jumbotron">
@@ -41,7 +42,7 @@
         <a href="/profile/genres">
           <h3 class="text-white mt-3 display-1" >Genres</h3>
         </a>
-        <% genres.forEach(genre => { %>
+        <% user.genres.forEach(genre => { %>
           <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
@@ -62,7 +63,7 @@
         <a href="/profile/artists">
           <h3 class="text-white mt-3 display-1">Artists</h3>
         </a>
-        <% artists.forEach(artist => { %>
+        <% user.artists.forEach(artist => { %>
           <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
@@ -83,7 +84,7 @@
         <a href="/profile/Songs">
           <h3 class="text-white mt-3 display-1">Songs</h3>
         </a>
-        <% songs.forEach(song => { %>
+        <% user.songs.forEach(song => { %>
           <div class="card border border-dark" style="max-width: 350px;">
             <div class="row no-gutters">
               <div class="col-md-2">
