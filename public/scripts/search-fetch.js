@@ -122,7 +122,7 @@ $('.search-results').on('click', 'div.result-card', function(e) {
 
   // console.log(dzArtistId, title, artist, artistPicture, albumArt, genre, genrePicture, dzGenreId)
 
-  fetch("/search", {
+  fetch("/search/new", {
     method: "POST", 
     json: true,
     headers: {
@@ -149,7 +149,6 @@ $('.search-results').on('click', 'div.result-card', function(e) {
     }, 200)
   })
   .catch(error => {
-    console.log('there was an error on the client side')
-    console.log(error)
+    return console.log('there was an error on the client side', error)
   })
 })

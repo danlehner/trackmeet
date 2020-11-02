@@ -46,6 +46,29 @@ router.get('/edit', async (req, res) => {
   }
 })
 
+router.put('/edit', async (req, res) => {
+  try {
+
+   const user = await db.User.findById(req.session.currentUser.id)
+   
+   const updateData = {
+    $set: {
+      username: req.body.username, 
+      profilePic: req.body.profilePic, 
+      city: req.body.city, 
+      bio: req.body.bio 
+    }
+   }
+
+   await db.User.findByIdAndUpdate(req.session.currentUser.id, updateData, { new: true })
+   res.redirect('/profile')
+    
+  } catch (error) {
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
+  }
+})
+
 
 router.delete('/:songID', async (req, res) => {
 
