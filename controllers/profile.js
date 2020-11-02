@@ -78,29 +78,52 @@ router.delete('/:songID', async (req, res) => {
 
   try {
 
-    const deletedSong = await db.Song.findByIdAndDelete(req.params.songID)
-    const artist = await db.Artist.findById(deletedSong.artist)
-    const genre = await db.Genre.findById(deletedSong.genre)
+    // const deletedSong = await db.Song.findByIdAndDelete(req.params.songID)
+    // const artist = await db.Artist.findById(deletedSong.artist)
+    // const genre = await db.Genre.findById(deletedSong.genre)
+
     const user = await db.User.findById(req.session.currentUser.id)
+     .populate('songs')
+     .populate('genres')
+     .populate('artists')
 
-    console.log(user)
+    const songToDelete = await db.Song.findById({ _id: req.params.songID })
 
-    // artist.songs.remove(deletedSong)
-    // genre.songs.remove(deletedSong)
+    // remove the song from the users songs
+    // console.log("user's song", user.songs)
+    user.songs.remove(songToDelete)
 
-    // if (!artist.songs.length) {
-    //   await db.Artist.findByIdAndDelete(artist._id)
-    // } else {
-    //   artist.save()
-    // }
+    // remove the song from the relevant artist
+    const artist = await db.Artist.findById(songToDelete.artist)
+    artist.songs.remove(songToDelete)
 
-    // if (!genre.songs.length) {
-    //   await db.Genre.findByIdAndDelete(genre._id)
-    // } else {
-    //   genre.save()
-    // }
+    // remove the song from the relevant genre
+    const genre = await db.Genre.findById(songToDelete.genre)
+    genre.songs.remove(songToDelete)
 
-    // res.redirect('/profile/')
+    // if an artist in the user's artists has no songs, delete the artist
+    // if a genre in the user's genres has no songs, delete the genre
+
+    artist.songs.remove(songToDelete)
+    genre.songs.remove(songToDelete)
+
+    if (!artist.songs.length) {
+      await db.Artist.findByIdAndDelete(artist._id)
+      user.artists.remove(artist)
+    } else {
+      artist.save()
+    }
+
+    if (!genre.songs.length) {
+      await db.Genre.findByIdAndDelete(genre._id)
+      user.genres.remove(genre)
+    } else {
+      genre.save()
+    }
+
+    user.save()
+
+    res.redirect('/profile/')
     
   } catch (error) {
     console.log(error)
