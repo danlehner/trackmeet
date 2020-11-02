@@ -146,4 +146,7 @@ $('.search-results').on('click', 'div.result-card', function(e) {
       $('.collection-link').show()
     }, 200)
   })
+  .catch(
+    console.log('there was an error')
+  )
 })
