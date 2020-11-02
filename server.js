@@ -48,7 +48,6 @@ app.get('/', (req, res) => {
   res.render('home/index.ejs', context)
 })
 
-// set up app.get for '/' once some of the other issues have been taken care of
 app.use('/', controllers.auth)
 app.use('/search', authRequired, controllers.search)
 app.use('/profile', authRequired, controllers.profile)

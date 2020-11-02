@@ -124,18 +124,20 @@ $('.search-results').on('click', 'div.result-card', function(e) {
 
   fetch("/search", {
     method: "POST", 
+    json: true,
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json", 
+
     }, 
     body: JSON.stringify({
-      dzArtistId: dzArtistId, 
-      title: title, 
-      artist: artist, 
-      artistPicture: artistPicture,
-      albumArt: albumArt, 
-      genre: genre, 
-      genrePicture: genrePicture,
-      dzGenreId: dzGenreId
+      dzArtistId,
+      title,
+      artist,
+      artistPicture,
+      albumArt, 
+      genre, 
+      genrePicture,
+      dzGenreId
     })
   })
   .then(response => {

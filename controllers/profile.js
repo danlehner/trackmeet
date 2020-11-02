@@ -27,8 +27,25 @@ router.get('/', async (req, res) => {
     console.log(error)
     res.send( { message: 'Internal Server Error'} )
   }
-  
 })
+
+router.get('/edit', async (req, res) => {
+
+  try {
+    const foundUser = await db.User.findById(req.session.currentUser.id)
+    
+    const context = { 
+      user: foundUser
+    }
+
+    res.render('profile/edit.ejs', context)
+
+  } catch (error) {
+    console.log(error)
+    res.send( { message: 'Internal Server Error'} )
+  }
+})
+
 
 router.delete('/:songID', async (req, res) => {
 
@@ -59,10 +76,6 @@ router.delete('/:songID', async (req, res) => {
     console.log(error)
     res.send( { message: 'Internal Server Error'} )
   }
-})
-
-router.get('/edit', (req, res) => {
-  res.render('profile/edit.ejs')
 })
 
 /* GENRES */

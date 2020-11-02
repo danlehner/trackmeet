@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Profile Edit</title>
-</head>
+  <%- include('../partials/head.ejs', { title: 'Edit Profile'}) %>
 <body>
 
   <%- include('../partials/nav') %>
 
-  <h1>This is the Profile Edit page</h1>
+  <div class="jumbotron profile-jumbotron">
+    <div class="container">
+      <h1 class="display-1 text-white">Edit Profile</h1>
+    </div>
+  </div>
+
+  <div class="container w-75 show-container mt-5 mb-5">
+    <form action="/profile/edit?_method=PUT" method="POST">
+      <div class="row h-100">
+        <div class="col pb-5" style="background-color: #579789;">
+          <h2 class="text-white mt-3 align-self-center display-3"><%= user.username %></h2>
+          <img class="rounded-circle mt-3" src="<%= user.profilePic %>" width="100" />
+        </div>
+        <div class="col pl-4 border border-dark">
+          <div class="mb-3 mt-1">
+            <h2 class="mt-3 align-self-center" style="color: #579789;">City</h2>
+            <h4><%= user.city %></h4>
+          </div>
+          <div class="mb-3 mt-1">
+            <h2 class="mt-3 align-self-center" style="color: #579789;">Bio</h2>
+            <p><%= user.bio %></p>
+          </div>
+        </div>
+      </div>
+     <input type="submit" value="Make changes">
+    </form>
+  </div>
+
 </body>
 </html>
