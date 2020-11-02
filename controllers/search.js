@@ -118,6 +118,8 @@ router.post('/', async (req, res) => {
       await createdGenre.save()
     } 
 
+    res.json({ message: "success"})
+
   } catch (error) {
     console.log(error)
     res.send( { message: 'Internal Server Error'} )
