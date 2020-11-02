@@ -122,7 +122,7 @@ $('.search-results').on('click', 'div.result-card', function(e) {
 
   // console.log(dzArtistId, title, artist, artistPicture, albumArt, genre, genrePicture, dzGenreId)
 
-  fetch('/search', {
+  fetch("/search", {
     method: "POST", 
     headers: {
       "Content-Type": "application/json"
@@ -139,7 +139,7 @@ $('.search-results').on('click', 'div.result-card', function(e) {
     })
   })
   .then(response => {
-    console.log(response)
+    console.log('client side response:', response)
     $(`#${nearestId}`).addClass('click-translate')
     setTimeout(() => {
       $(`#${nearestId}`).remove()
@@ -147,7 +147,7 @@ $('.search-results').on('click', 'div.result-card', function(e) {
     }, 200)
   })
   .catch(error => {
-    console.log('there was an error')
+    console.log('there was an error on the client side')
     console.log(error)
   })
 })

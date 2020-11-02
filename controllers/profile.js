@@ -13,8 +13,6 @@ router.get('/', async (req, res) => {
     const foundSongs = await db.Song.find({})
     const user = await db.User.findById(req.session.currentUser.id)
 
-    console.log(user)
-
     context = {
       genres: foundGenres,
       artists: foundArtists, 

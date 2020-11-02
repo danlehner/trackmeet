@@ -37,16 +37,16 @@
           <h3 class="text-white mt-3 display-1" >Genres</h3>
         </a>
         <% genres.forEach(genre => { %>
-          <div class="card border border-dark" style="max-width: 350px;">
+          <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
                 <a href="/profile/genres/<%= genre._id %>">
-                  <img class="card-img rounded-circle" src="<%= genre.genrePicture %>" alt="<%= genre.name %>" width="50">
+                  <img class="card-img rounded-circle border border-white" src="<%= genre.genrePicture %>" alt="<%= genre.name %>" width="50">
                 </a>
               </div>
               <div class="col-md-8">
                 <a href="/profile/genres/<%= genre._id %>">
-                  <h5 class="card-text mt-3 ml-2"><%= genre.name %></h5>
+                  <h3 class="card-text text-white mt-2 ml-1"><%= genre.name %></h3>
                 </a>
               </div>
             </div>
@@ -58,16 +58,16 @@
           <h3 class="text-white mt-3 display-1">Artists</h3>
         </a>
         <% artists.forEach(artist => { %>
-          <div class="card border border-dark" style="max-width: 350px;">
+          <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
                 <a href="/profile/artists/<%= artist._id %>">
-                  <img class="card-img rounded-circle" src="<%= artist.artistPicture %>" alt="<%= artist.name %>" width="50">
+                  <img class="card-img rounded-circle border border-white" src="<%= artist.artistPicture %>" alt="<%= artist.name %>" width="50">
                 </a>
               </div>
               <div class="col-md-8">
                 <a href="/profile/artists/<%= artist._id %>">
-                  <h5 class="card-text mt-3 ml-2"><%= artist.name %></h5>
+                  <h3 class="card-text text-white mt-2 ml-1"><%= artist.name %></h3>
                 </a>
               </div>
             </div>
@@ -83,7 +83,7 @@
             <div class="row no-gutters">
               <div class="col-md-2">
                 <a href="/profile/songs/<%= song._id %>">
-                  <img class="card-img rounded-circle" src="<%= song.artistPicture %>" alt="<%= song.title %>" width="50">
+                  <img class="card-img rounded-circle border border-white" src="<%= song.artistPicture %>" alt="<%= song.title %>" width="50">
                 </a>
               </div>
               <div class="col-md-6">
