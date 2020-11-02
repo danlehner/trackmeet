@@ -82,7 +82,6 @@ const dzSearch = (query) => {
 
             displayResults(artistId, songTitle, artistName, artistPicture, albumArt, genreName, genrePicture, genreId, cardId); 
 
-
             clearSearchAvail()
 
           })
@@ -123,7 +122,6 @@ $('.search-results').on('click', 'div.result-card', function(e) {
   const genrePicture = $('#genre-picture')[0].innerHTML
   const dzGenreId = $('#dz-genre-id')[0].innerHTML
 
-
   fetch('/search', {
     method: "POST", 
     headers: {
@@ -141,6 +139,7 @@ $('.search-results').on('click', 'div.result-card', function(e) {
     })
   })
   .then(response => {
+    console.log(response)
     $(`#${nearestId}`).addClass('click-translate')
     setTimeout(() => {
       $(`#${nearestId}`).remove()
