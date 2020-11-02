@@ -21,17 +21,15 @@ const displayResults = function(
   
   $('.search-results').append(`  
   <div id=${cardId} class="card-body result-card">
-   <div class="card-content">
-      <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
-      <p id="dz-artist-id" class="hidden">${dzArtistId}</p>
-      <h3 id="title" class="card-title">${title}</h3>
-      <h5 id="artist" class="card-subtitle artist-name">${artist}</h5>
-      <p id="album-art" class="hidden">${albumArt}</p>
-      <p id="artist-picture" class="hidden">${artistPicture}</p>
-      <p id="genre-picture" class="hidden">${genrePicture}</p>
-      <h5 class="card-genre" id="genre">${genre}</h5>
-      <p id="dz-genre-id" class="hidden">${dzGenreId}</p>
-    </div>
+    <img class="card-img-top" src="${albumArt}" alt="${title} artwork" />
+    <p id="dz-artist-id" class="hidden">${dzArtistId}</p>
+    <h3 id="title" class="card-title">${title}</h3>
+    <h5 id="artist" class="card-subtitle artist-name">${artist}</h5>
+    <p id="album-art" class="hidden">${albumArt}</p>
+    <p id="artist-picture" class="hidden">${artistPicture}</p>
+    <p id="genre-picture" class="hidden">${genrePicture}</p>
+    <h5 class="card-genre" id="genre">${genre}</h5>
+    <p id="dz-genre-id" class="hidden">${dzGenreId}</p>
   </div>
   `)
 
@@ -113,14 +111,16 @@ $('.result-box').submit(function(e) {
 $('.search-results').on('click', 'div.result-card', function(e) {
   e.preventDefault() 
   const nearestId = $(e.target).closest(".result-card").attr("id")
-  const dzArtistId = $('#dz-artist-id')[0].innerHTML
-  const title = $('#title')[0].innerHTML
-  const artist = $('#artist')[0].innerHTML
-  const artistPicture = $('#artist-picture')[0].innerHTML
-  const albumArt = $('#album-art')[0].innerHTML
-  const genre = $('#genre')[0].innerHTML
-  const genrePicture = $('#genre-picture')[0].innerHTML
-  const dzGenreId = $('#dz-genre-id')[0].innerHTML
+  const dzArtistId = $(`#${nearestId}`).find('#dz-artist-id')[0].innerHTML
+  const title = $(`#${nearestId}`).find('#title')[0].innerHTML
+  const artist = $(`#${nearestId}`).find('#artist')[0].innerHTML
+  const artistPicture = $(`#${nearestId}`).find('#artist-picture')[0].innerHTML
+  const albumArt = $(`#${nearestId}`).find('#album-art')[0].innerHTML
+  const genre = $(`#${nearestId}`).find('#genre')[0].innerHTML
+  const genrePicture = $(`#${nearestId}`).find('#genre-picture')[0].innerHTML
+  const dzGenreId = $(`#${nearestId}`).find('#dz-genre-id')[0].innerHTML
+
+  // console.log(dzArtistId, title, artist, artistPicture, albumArt, genre, genrePicture, dzGenreId)
 
   fetch('/search', {
     method: "POST", 
@@ -146,7 +146,8 @@ $('.search-results').on('click', 'div.result-card', function(e) {
       $('.collection-link').show()
     }, 200)
   })
-  .catch(
+  .catch(error => {
     console.log('there was an error')
-  )
+    console.log(error)
+  })
 })

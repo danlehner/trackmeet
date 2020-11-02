@@ -5,8 +5,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap');
 
+:root {
+  --brightred: #DE354C; 
+  --deepred: #932432; 
+  --purepurple: #3C1874; 
+  --purplegrey: #283747;
+  --cloud: #F3F3F3; 
+}
+
 body {
-  background-color: #F5F5F5;
+  background-color: var(--cloud)
 }
 
 body, html, p {
@@ -18,14 +26,14 @@ a {
   text-decoration: none !important;
 } 
 
-h1, h2, h3 {
+h1 {
   font-family: "Clarendon Regular"; 
   text-shadow: 2px 2px black; 
 }
 
 .search-description {
   width: 450px; 
-  background-color: red; 
+  background-color: var(--brightred); 
   line-height: 27px;
   box-shadow: 8px 8px black; 
 }
@@ -54,6 +62,11 @@ h1, h2, h3 {
   background-size: cover;
   background-position: bottom right;
 }
+
+.search-jumbotron h1 {
+  color: var(--brightred)
+}
+
 
 .genres-jumbotron {
   background-image: url('../assets/record-store-genre.jpeg');
@@ -129,7 +142,7 @@ h1, h2, h3 {
 }
 
 .result-card h3 {
-  background-color: red; 
+  background-color: var(--brightred)
   color: #fafafa; 
   font-size: 20px; 
   padding: 10px; 
