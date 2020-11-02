@@ -11,20 +11,20 @@
     </div>
   </div>
 
-  <div class="container show-container mt-5 mb-5">
+  <div class="container w-75 show-container mt-5 mb-5">
     <div class="row h-100">
       <div class="col pb-5" style="background-color: #579789;">
-        <h2 class="text-white mt-3 align-self-center display-3">DanLehner</h2>
-        <img class="rounded-circle mt-3" src="https://f4.bcbits.com/img/0021118043_2.jpg" width="100" />
+        <h2 class="text-white mt-3 align-self-center display-3"><%= user.username %></h2>
+        <img class="rounded-circle mt-3" src="<%= user.profilePic %>" width="100" />
       </div>
       <div class="col pl-4 border border-dark">
         <div class="mb-3 mt-1">
           <h2 class="mt-3 align-self-center" style="color: #579789;">City</h2>
-          <h4>Brooklyn, NY</h4>
+          <h4><%= user.city %></h4>
         </div>
         <div class="mb-3 mt-1">
           <h2 class="mt-3 align-self-center" style="color: #579789;">Bio</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+          <p><%= user.bio %></p>
         </div>
       </div>
     </div>
@@ -41,12 +41,12 @@
             <div class="row no-gutters">
               <div class="col-md-2">
                 <a href="/profile/genres/<%= genre._id %>">
-                  <img class="card-img" src="<%= genre.genrePicture %>" alt="<%= genre.name %>" width="50">
+                  <img class="card-img rounded-circle" src="<%= genre.genrePicture %>" alt="<%= genre.name %>" width="50">
                 </a>
               </div>
               <div class="col-md-8">
                 <a href="/profile/genres/<%= genre._id %>">
-                  <h5 class="card-text mt-2 ml-2"><%= genre.name %></h5>
+                  <h5 class="card-text mt-3 ml-2"><%= genre.name %></h5>
                 </a>
               </div>
             </div>
@@ -62,12 +62,12 @@
             <div class="row no-gutters">
               <div class="col-md-2">
                 <a href="/profile/artists/<%= artist._id %>">
-                  <img class="card-img" src="<%= artist.artistPicture %>" alt="<%= artist.name %>" width="50">
+                  <img class="card-img rounded-circle" src="<%= artist.artistPicture %>" alt="<%= artist.name %>" width="50">
                 </a>
               </div>
               <div class="col-md-8">
                 <a href="/profile/artists/<%= artist._id %>">
-                  <h5 class="card-text mt-2 ml-2"><%= artist.name %></h5>
+                  <h5 class="card-text mt-3 ml-2"><%= artist.name %></h5>
                 </a>
               </div>
             </div>
@@ -83,12 +83,12 @@
             <div class="row no-gutters">
               <div class="col-md-2">
                 <a href="/profile/songs/<%= song._id %>">
-                  <img class="card-img" src="<%= song.artistPicture %>" alt="<%= song.title %>" width="50">
+                  <img class="card-img rounded-circle" src="<%= song.artistPicture %>" alt="<%= song.title %>" width="50">
                 </a>
               </div>
               <div class="col-md-6">
                 <a href="/profile/songs/<%= song._id %>">
-                  <p class="card-text mt-2 ml-2"><%= song.title %></p>
+                  <p class="card-text mt-3 ml-2"><%= song.title %></p>
                 </a>
               </div>
               <div class="col-md-4 w-100">

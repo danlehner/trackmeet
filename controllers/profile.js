@@ -11,11 +11,15 @@ router.get('/', async (req, res) => {
     const foundGenres = await db.Genre.find({})
     const foundArtists = await db.Artist.find({})
     const foundSongs = await db.Song.find({})
+    const user = await db.User.findById(req.session.currentUser.id)
+
+    console.log(user)
 
     context = {
       genres: foundGenres,
       artists: foundArtists, 
-      songs: foundSongs
+      songs: foundSongs, 
+      user: user,
     }
     
     res.render('profile/index.ejs', context)

@@ -13,6 +13,10 @@
   --cloud: #F3F3F3; 
 }
 
+.btn-warning {
+  background-color: #efa801 !important;
+}
+
 body {
   background-color: var(--cloud)
 }
