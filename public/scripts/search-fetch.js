@@ -122,9 +122,8 @@ $('.search-results').on('click', 'div.result-card', function(e) {
 
   // console.log(dzArtistId, title, artist, artistPicture, albumArt, genre, genrePicture, dzGenreId)
 
-  fetch("/search/new", {
+  fetch("/search", {
     method: "POST", 
-    json: true,
     headers: {
       "Content-Type": "application/json", 
 

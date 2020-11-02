@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   res.render('home/search.ejs')
 })
 
-router.post('/new', async (req, res) => {
+router.post('/', async (req, res) => {
 
   console.log('server side response', req.body)
 
