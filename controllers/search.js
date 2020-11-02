@@ -11,8 +11,6 @@ router.get('/', (req, res) => {
 // TEST SEARCH POST ROUTE
 router.post('/', async (req, res) => {
 
-  console.log(req.body)
-
   try {
     const foundArtist = await db.Artist.findOne({ dzArtistId: req.body.dzArtistId})
     const foundGenre = await db.Genre.findOne({ dzGenreId: req.body.dzGenreId })
