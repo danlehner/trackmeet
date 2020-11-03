@@ -18,9 +18,9 @@ router.get('/', async (req, res) => {
       .populate('genres')
       .populate('songs')
 
-
     let mostPopularArtist = '' 
     let mostPopularGenre = '' 
+    let unheardSongs = []
 
     function getMostPopArt() {
       let mostPop = user.artists[0]
@@ -42,8 +42,17 @@ router.get('/', async (req, res) => {
       mostPopularGenre = mostPop
     }
 
+    function getUnheardSongs() {
+      user.songs.forEach(song => {
+        if (!song.listenedTo) {
+          unheardSongs.push(song)
+        }
+      })
+    }
+
     getMostPopGen()
     getMostPopArt()
+    getUnheardSongs()
 
     context = {
       // genres: foundGenres,
@@ -51,7 +60,8 @@ router.get('/', async (req, res) => {
       // songs: foundSongs, 
       user: user,
       mostPopularArtist: mostPopularArtist, 
-      mostPopularGenre: mostPopularGenre
+      mostPopularGenre: mostPopularGenre, 
+      unheardSongs: unheardSongs
     }
 
     res.render('profile/index.ejs', context)
