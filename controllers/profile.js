@@ -179,10 +179,12 @@ router.get('/genres/:genreID', async (req, res) => {
 router.get('/artists', async (req, res) => {
 
   try {
-    const foundArtists = await db.Artist.find({})
-  
+    // const foundArtists = await db.Artist.find({})
+    const user = await db.User.findById(req.session.currentUser.id).populate('artists')
+
     context = {
-      allArtists: foundArtists
+      // allArtists: foundArtists
+      user: user
     }
   
     res.render('profile/artists/index.ejs', context)
@@ -219,10 +221,11 @@ router.get('/artists/:artistID', async (req, res) => {
 router.get('/songs', async (req, res) => {
   try {
     
-    const foundSongs = await db.Song.find({})
+    // const foundSongs = await db.Song.find({})
+    const user = await db.User.findById(req.session.currentUser.id).populate('songs')
 
     context = {
-      allSongs: foundSongs
+      user: user
     }
 
     res.render('profile/songs/index.ejs', context)
