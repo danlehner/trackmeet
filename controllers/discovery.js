@@ -7,10 +7,13 @@ const db = require('../models')
 router.get('/', async (req, res) => {
   try {
 
-    const foundArtists = await db.Artist.find({})
+    const user = await db.User.findById(req.session.currentUser.id)
+      .populate('artists')
+
+    console.log(user)
 
     context = {
-      artists: foundArtists
+      user: user
     }
 
     res.render('discovery/index.ejs', context)
