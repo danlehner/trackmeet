@@ -20,8 +20,9 @@ router.get('/', async (req, res) => {
 
 
     let mostPopularArtist = '' 
+    let mostPopularGenre = '' 
 
-    function getMostPop() {
+    function getMostPopArt() {
       let mostPop = user.artists[0]
       for (let i = 0; i < user.artists.length; i++) {
         if (mostPop.songs.length < user.artists[i].songs.length) {
@@ -31,16 +32,26 @@ router.get('/', async (req, res) => {
       mostPopularArtist = mostPop
     }
 
-    getMostPop()
+    function getMostPopGen() {
+      let mostPop = user.genres[0]
+      for (let i = 0; i < user.genres.length; i++ ) {
+        if (mostPop.artists.length < user.genres[i].artists.length) {
+          mostPop = user.genres[i]
+        }
+      }
+      mostPopularGenre = mostPop
+    }
 
-    console.log(mostPopularArtist)
+    getMostPopGen()
+    getMostPopArt()
 
     context = {
       // genres: foundGenres,
       // artists: foundArtists, 
       // songs: foundSongs, 
       user: user,
-      mostPopularArtist: mostPopularArtist
+      mostPopularArtist: mostPopularArtist, 
+      mostPopularGenre: mostPopularGenre
     }
 
     res.render('profile/index.ejs', context)

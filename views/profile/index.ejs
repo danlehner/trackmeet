@@ -122,6 +122,60 @@
       </div>
     </div>
   </div>
+
+  <div class="container w-75 show-container mt-5 mb-5">
+    <div class="row h-100">
+      <div class="col pb-5" style="background-color: #579789;">
+        <h2 class="text-white mt-3 align-self-center display-3">Metrics</h2>
+        <h4>Artists with the most songs in your collection:</h4>
+          <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
+            <div class="row no-gutters">
+              <div class="col-md-2">
+                <a href="/profile/artists/<%= mostPopularArtist._id %>">
+                  <img class="card-img rounded-circle border border-white" src="<%= mostPopularArtist.artistPicture %>" alt="<%= mostPopularArtist.name %>" width="50">
+                </a>
+              </div>
+              <div class="col-md-8">
+                <a href="/profile/artists/<%= mostPopularArtist._id %>">
+                  <h3 class="card-text text-white mt-2 ml-1"><%= mostPopularArtist.name %></h3>
+                </a>
+              </div>
+            </div>
+          </div>
+          <h4>Genre with the most artists in your collection:</h4>
+          <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
+            <div class="row no-gutters">
+              <div class="col-md-2">
+                <a href="/profile/genres/<%= mostPopularGenre._id %>">
+                  <img class="card-img rounded-circle border border-white" src="<%= mostPopularGenre.genrePicture %>" alt="<%= mostPopularGenre.name %>" width="50">
+                </a>
+              </div>
+              <div class="col-md-8">
+                <a href="/profile/genres/<%= mostPopularGenre._id %>">
+                  <h3 class="card-text text-white mt-2 ml-1"><%= mostPopularGenre.name %></h3>
+                </a>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col pl-4 border border-dark">
+        <div class="mb-3 mt-1">
+          <h2 class="mt-3 align-self-center" style="color: #579789;">City</h2>
+          <h4><%= user.city %></h4>
+        </div>
+        <div class="mb-3 mt-1">
+          <h2 class="mt-3 align-self-center" style="color: #579789;">Bio</h2>
+          <p><%= user.bio %></p>
+        </div>
+        <div class="d-flex justify-content-end">
+          <a href="/profile/edit#edit-form">
+            <button class="btn text-white" style="background-color: #579789;">Edit Profile</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <%= mostPopularArtist.name %>
   <!-- <h4>Genres (forEach)</h4>
   <% user.genres.forEach(genre => { %>
