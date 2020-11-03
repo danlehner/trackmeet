@@ -15,12 +15,12 @@
 <div class="container mb-5">
   <div class="row justify-content-md-center search-results">
     <% user.genres.map(genre => { %>
+      <a href="/profile/genres/<%= genre._id %>">
         <div class="card-body result-card rc-small">
-            <img src="<%= genre.genrePicture %>" alt="<%= genre.name%>" class="card-img-top" width="50">
-            <a href="/profile/genres/<%= genre._id %>">
-              <h3 class="card-title ct-small"><%= genre.name %></h3>
-            </a>
+          <img src="<%= genre.genrePicture %>" alt="<%= genre.name%>" class="card-img-top" width="50">
+          <h3 class="card-title ct-small"><%= genre.name %></h3>
         </div>
+      </a>
     <% }) %> 
   </div>
 </div>

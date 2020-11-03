@@ -18,11 +18,29 @@ router.get('/', async (req, res) => {
       .populate('genres')
       .populate('songs')
 
+
+    let mostPopularArtist = '' 
+
+    function getMostPop() {
+      let mostPop = user.artists[0]
+      for (let i = 0; i < user.artists.length; i++) {
+        if (mostPop.songs.length < user.artists[i].songs.length) {
+          mostPop = user.artists[i]
+        }
+      }
+      mostPopularArtist = mostPop
+    }
+
+    getMostPop()
+
+    console.log(mostPopularArtist)
+
     context = {
       // genres: foundGenres,
       // artists: foundArtists, 
       // songs: foundSongs, 
-      user: user
+      user: user,
+      mostPopularArtist: mostPopularArtist
     }
 
     res.render('profile/index.ejs', context)
@@ -223,7 +241,6 @@ router.get('/artists/:artistID', async (req, res) => {
         .then(res => res.json())
         .then(json => {
           relatedArtists = json.data
-          console.log('fetch complete')
       })
 
 

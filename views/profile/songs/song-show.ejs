@@ -7,17 +7,38 @@
 
   <div class="container show-container mt-5 mb-5">
     <div class="row h-100">
-      <div class="col pb-5" style="background-color: red;">
+      <div class="col pb-5" style="background-color: lightblue;">
         <a href="/profile/artists/<%= artist._id %>">
-          <h3 class="text-white mt-3 align-self-center">
+          <h3 class="mt-3 align-self-center">
             <%= artist.name %>
           </h3>
         </a>
         <h1 class="text-white">"<%= song.title %>"</h1>
         <a href="/profile/genres/<%= genre._id %>">
-          <h5 class="text-white">(<%= genre.name %>)</h5>
+          <h5>(<%= genre.name %>)</h5>
         </a>
         <img class="rounded-circle mt-3" src="<%= song.artistPicture %>" width="100" />
+        <div class="row container d-block">
+          <h3 class="mt-2">Listening links</h3>
+          <div class="row container">
+            <% const songPercent = song.title.replace(/ /g, '%20') %>
+            <% const artistPercent = artist.name.replace(/ /g, '%20') %>
+            <% const songPlusses = song.title.replace(/ /g, '+') %>
+            <% const artistPlusses = artist.name.replace(/ /g, '+') %>
+            <a class="m-2" href="https://open.spotify.com/search/<%= artistPercent %>%20<%= songPercent %>">
+              <i style="color: #1DB954;" class="fab fa-spotify fa-2x" aria-hidden="true"></i>
+            </a>
+            <a class="m-2" href="https://music.apple.com/us/search?term=<%= artistPercent %>%20<%= songPercent %>">
+              <i style="color: #EA4CC0" class="fab fa-itunes fa-2x"></i>
+            </a>
+            <a class="m-2" href="https://www.deezer.com/search/<%= artistPercent %>%20<%= songPercent %>/track">
+              <i style="color: #000" class="fab fa-deezer fa-2x"></i>
+            </a>
+            <a class="m-2" href="https://www.youtube.com/results?search_query=<%= artistPlusses %>%20<%= songPlusses %>/track">
+              <i style="color: #FF0000;" class="fab fa-youtube fa-2x"></i>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="col pl-4 border border-dark">
         <div class="mb-3 mt-1">
