@@ -15,7 +15,7 @@
   <div class="container w-75 show-container mt-5 mb-5">
     <div class="row h-100">
       <div class="col pb-5" style="background-color: var(--darkteal);">
-        <h2 class="text-white mt-3 align-self-center display-3"><%= user.username %></h2>
+        <h2 class="text-white mt-3 align-self-center display-3" style="margin-left: -.35em;"><%= user.username %></h2>
         <img class="rounded-circle mt-3" src="<%= user.profilePic %>" width="100" />
       </div>
       <div class="col pl-4 border border-dark">
@@ -41,9 +41,10 @@
   <% } else { %>
   <div id="index-container" class="container show-container mt5 mb-5">
     <div class="row h-100">
-      <div class="col pb-5" style="background-color: var(--brightred); padding-left: 0px !important;">
+      <div class="col pb-5" style="background-color: var(--brightred); padding-left: 0px !important; z-index: 2;">
         <a href="/profile/genres">
           <h3 class="text-white mt-3 display-1" >Genres</h3>
+          <hr>
         </a>
         <% for (let i = 0; i < (user.genres.length > 5 ? 5 : user.genres.length); i++) { %>
           <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
@@ -62,16 +63,17 @@
           </div>
         <%  } %>
         <% if (user.genres.length > 5 ) { %>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-end mt-5">
             <a href="/profile/genres">
-              <button class="btn text-white" style="background-color: #579789;">See More</button>
+              <button class="btn text-white" style="background-color: var(--darkteal);">See More</button>
             </a>
           </div>
         <% } %>
       </div>
-      <div class="col pb-5" style="background-color: var(--mutegold); padding-left: 0px !important;">
+      <div class="col pb-5" style="background-color: var(--mutegold); padding-left: 0px !important; z-index: 1;">
         <a href="/profile/artists">
         <h3 class="text-white mt-3 display-1">Artists</h3>
+        <hr>
          </a>
         <% for (let i = 0; i < (user.artists.length > 5 ? 5 : user.artists.length); i++) {   %>
           <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
@@ -90,9 +92,9 @@
           </div>
         <%  } %>
         <% if (user.artists.length > 5 ) { %>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-end mt-5">
             <a href="/profile/artists">
-              <button class="btn text-white" style="background-color: #579789;">See More</button>
+              <button class="btn text-white" style="background-color: var(--darkteal);">See More</button>
             </a>
           </div>
         <% } %>
@@ -100,32 +102,33 @@
       <div class="col pb-5" style="background-color: var(--darkteal);  padding-left: 0px !important;">
         <a href="/profile/songs">
           <h3 class="text-white mt-3 display-1">Songs</h3>
+          <hr>
         </a>
         <% for (let i = 0; i < (user.songs.length > 5 ? 5 : user.songs.length); i++) {  %>
-          <div class="card border border-dark" style="max-width: 350px;">
+          <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
                 <a href="/profile/songs/<%= user.songs[i]._id %>">
                   <img class="card-img rounded-circle border border-white" src="<%= user.songs[i].artistPicture %>" alt="<%= user.songs[i].title %>" width="50">
                 </a>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <a href="/profile/songs/<%= user.songs[i]._id %>">
-                  <p class="card-text mt-3 ml-2"><%= user.songs[i].title %></p>
+                  <h6 class="card-text text-white mt-2 ml-1"><%= user.songs[i].title %></h6>
                 </a>
               </div>
-              <div class="col-md-4 w-100">
+              <div class="col-md-3 mt-2 w-25">
                 <form action="/profile/<%= user.songs[i].id %>?_method=DELETE" method="POST">
-                  <input class="btn-warning w-100 h-50" style="border-bottom: 1px solid black; border-left: 1px solid black; border-right: 0px; border-top: 0px;" type="submit" value="Delete">
+                  <input class="w-100 h-50" style="background-color: var(--mutegold); color: white; border: 0px;" type="submit" value="DELETE">
                 </form>
               </div>
             </div>
           </div>
         <% } %>
         <% if (user.songs.length > 5 ) { %>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-end mt-5">
             <a href="/profile/songs">
-              <button class="btn text-white" style="background-color: #579789;">See More</button>
+              <button class="btn text-white" style="background-color: var(--mutegold);">See More</button>
             </a>
           </div>
         <% } %>
@@ -136,7 +139,7 @@
   <div class="container w-75 show-container mt-5 mb-5">
     <div class="row h-100">
       <div class="col pb-5" style="background-color: #579789;">
-        <h2 class="text-white mt-3 align-self-center display-3">Metrics</h2>
+        <h2 class="text-white mt-3 align-self-center display-3" style="margin-left: -.35em;">Metrics</h2>
         <h4>Artists with the most songs in your collection:</h4>
          <% if (mostPopularArtist == '') { %>
            <p>Looks like you have an even love of all artists!</p>

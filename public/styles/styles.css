@@ -132,9 +132,14 @@ h1 {
   display: none;
 }
 
-
 .collection-link {
   margin-top: 20px; 
+}
+
+
+.col h3 {
+  z-index: -1;
+  margin-left: -.2em;
 }
 
 /* --- RESULT CARD --- */
@@ -164,6 +169,7 @@ h1 {
 
 .ct-small {
   font-size: 12px !important; 
+  color: black; 
 }
 
 .click-translate {
