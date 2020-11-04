@@ -14,6 +14,8 @@ router.get('/', async (req, res) => {
       .populate('genres')
       .populate('songs')
 
+    console.log(user.genres)
+
     let mostPopularArtist = '' 
     let mostPopularGenre = '' 
     let unheardSongs = []
@@ -159,18 +161,20 @@ router.delete('/:songID', async (req, res) => {
     if (!artist.songs.length) {
       await db.Artist.findByIdAndDelete(artist._id)
       user.artists.remove(artist)
+      genre.artists.remove(artist)
+      await genre.save()
     } else {
-      artist.save()
+      await artist.save()
     }
 
     if (!genre.songs.length) {
       await db.Genre.findByIdAndDelete(genre._id)
       user.genres.remove(genre)
     } else {
-      genre.save()
+      await genre.save()
     }
 
-    user.save()
+    await user.save()
 
     res.redirect('/profile/')
     
