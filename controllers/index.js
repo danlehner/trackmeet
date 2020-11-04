@@ -1,5 +1,4 @@
-module.exports = {
-  discovery: require('./discovery'), 
+module.exports = { 
   profile: require('./profile'), 
   auth: require('./auth'), 
   search: require('./search')

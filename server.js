@@ -51,7 +51,6 @@ app.get('/', (req, res) => {
 app.use('/', controllers.auth)
 app.use('/search', authRequired, controllers.search)
 app.use('/profile', authRequired, controllers.profile)
-app.use('/discovery', authRequired, controllers.discovery)
 
 
 // port listening

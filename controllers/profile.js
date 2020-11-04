@@ -40,22 +40,29 @@ router.get('/', async (req, res) => {
 
     function getMostPopGen() {
 
-      // test case: Pop is user.genres[0]
-      // Pop has one artist, Rap/Hip-Hop has two 
       let mostPop = user.genres[0]
-      let allEqual = false 
+      let areEqual = false 
+      let checkEqualArray = []
+      const checkEqual = arr => arr.every(genre => genre === arr[0])
+
       for (let i = 0; i < user.genres.length; i++ ) {
-         // if Pop's artists are less than Rap's artists...
-        if (mostPop.artists.length < user.genres[i].artists.length) {
+
+        let genreArtLen = user.genres[i].artists.length
+        checkEqualArray.push(genreArtLen)
+
+        console.log(user.genres[i].name, "has", genreArtLen, mostPop.name, "has", mostPop.artists.length)
+        
+        if (user.genres[i].artists.length > mostPop.artists.length) {
           mostPop = user.genres[i]
-        } else if (mostPop.artists.length === user.genres[i].artists.length) {
-          allEqual = true 
-        } else {
-          allEqual = false
-        }
-        // console.log(mostPop.name, user.genres[i].name, user.genres[i].artists.length)
+        } 
+        console.log(mostPop.name)
+
       }
-      if (!allEqual) {
+      if (checkEqual(checkEqualArray)) {
+        areEqual = true 
+      }
+      console.log("checkEqualArray", checkEqualArray, "are equal:", areEqual)
+      if (!areEqual) {
         mostPopularGenre = mostPop
       } else {
         mostPopularGenre = '' 
@@ -288,7 +295,7 @@ router.get('/artists/:artistID', async (req, res) => {
     context = {
       artist: foundArtist, 
       genre: foundGenre,
-      relatedArtists: relatedArtists
+      // relatedArtists: relatedArtists
     }
 
     res.render('profile/artists/artist-show.ejs', context)

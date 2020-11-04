@@ -178,16 +178,21 @@
       </div>
       <div class="col pl-4 border border-dark">
         <h4 class="mt-5">Songs in your collection you haven't listened to yet</h4>
-        <ul style="list-style-type: none;">
-          <% unheardSongs.forEach(song => { %>
-            <a href="/profile/songs/<%= song._id %>">
-              <li><%= song.title %></li>
-            </a>
-          <% }) %>
-        </ul>
+        <% if (unheardSongs.length) { %>
+          <ul style="list-style-type: none;">
+            <% unheardSongs.forEach(song => { %>
+              <a href="/profile/songs/<%= song._id %>">
+                <li><%= song.title %></li>
+              </a>
+            <% }) %>
+          </ul>
+        <% } else { %>
+          <p>You're all caught up on your collection!</p>
+        <% } %>
       </div>
     </div>
   </div>
   <% } %>
+
 </body>
 </html>

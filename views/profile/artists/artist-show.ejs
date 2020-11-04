@@ -38,20 +38,6 @@
       </div>
     </div>
   </div>
-  
-  <div class="container mb-5">
-    <h2>Related Artists</h2>
-    <div class="row justify-content-md-center search-results">
-      <% relatedArtists.forEach(relArtist => { %>
-        <div class="card-body result-card rc-small">
-          <a href="<% relArtist.link %>">
-            <p><%= relArtist.name %></p>
-            <img src="<%= relArtist.picture_xl %>" alt="<%= relArtist.name %>" width="100" /> 
-          </a>
-        </div>
-      <% }) %>
-    </div>
-  </div>
 
 </body>
 </html>
