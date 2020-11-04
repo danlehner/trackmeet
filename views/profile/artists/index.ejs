@@ -15,10 +15,10 @@
     <div class="row justify-content-md-center search-results">   
       <% user.artists.map(artist => { %>
           <div class="card-body rc-small">
-              <a href="/profile/artists/<%= artist._id %>">
-                <img src="<%= artist.artistPicture %>" alt="<%= artist.name%>" class="card-img-top" width="50">
-                <h3 class="card-title ct-small mt-2"><%= artist.name %></h3>
-              </a>
+            <a href="/profile/artists/<%= artist._id %>">
+            <img src="<%= artist.artistPicture %>" alt="<%= artist.name%>" class="card-img-top" width="50">
+            <h3 class="card-title ct-small mt-2"><%= artist.name %></h3>
+          </a>
           </div>
       <% }) %> 
     </div>
