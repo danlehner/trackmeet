@@ -21,18 +21,27 @@ router.get('/', async (req, res) => {
     let unheardSongs = []
 
     function getMostPopArt() {
+
       let mostPop = user.artists[0]
-      let changed = false
+      let areEqual = false
+      let checkEqualArray = []
+      const checkEqual = arr => arr.every(artist => artist === arr[0])
+
       for (let i = 0; i < user.artists.length; i++) {
+        let artistSongLen = user.artists[i].songs.length
+        checkEqualArray.push(artistSongLen)
+
         if (mostPop.songs.length < user.artists[i].songs.length) {
           mostPop = user.artists[i]
-          changed = true 
         }
       }
-      if (changed) {
+      if (checkEqual(checkEqualArray)) {
+        areEqual = true 
+      }
+      if (!areEqual) {
         mostPopularArtist = mostPop
       } else {
-        mostPopularArtist = ''
+        mostPopularArtist = '' 
       }
     }
 
@@ -47,19 +56,14 @@ router.get('/', async (req, res) => {
 
         let genreArtLen = user.genres[i].artists.length
         checkEqualArray.push(genreArtLen)
-
-        console.log(user.genres[i].name, "has", genreArtLen, mostPop.name, "has", mostPop.artists.length)
         
         if (user.genres[i].artists.length > mostPop.artists.length) {
           mostPop = user.genres[i]
         } 
-        console.log(mostPop.name)
-
       }
       if (checkEqual(checkEqualArray)) {
         areEqual = true 
       }
-      console.log("checkEqualArray", checkEqualArray, "are equal:", areEqual)
       if (!areEqual) {
         mostPopularGenre = mostPop
       } else {
