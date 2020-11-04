@@ -15,6 +15,10 @@
   --darkteal: #5a7670; 
 }
 
+hr {
+  background-color: white; 
+}
+
 .btn-warning {
   background-color: #efa801 !important;
 }

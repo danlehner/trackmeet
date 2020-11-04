@@ -5,24 +5,24 @@
 
   <%- include('../../partials/nav') %>
 
-  <div class="container show-container mt-5 mb-5">
+  <div class="container show-container mt-5 mb-5 w-75">
     <div class="row h-100">
       <div class="col" style="background-image: url('<%= genre.genrePicture %>'); background-size: cover;">
           <h1 class="text-white mt-3 align-self-center"><%= genre.name %></h1>
       </div>
-      <div class="col pl-4" style="border: 1px solid black; background-color: rgb(197, 72, 72);">
+      <div class="col pl-4 pb-4" style="border: 1px solid black; background-color: var(--brightred);">
        <h3 class="text-white mt-3">Artists</h3>
         <% genre.artists.forEach(artist => { %>
-          <div class="card mb-3" style="max-width: 350px;">
+          <div class="card mb-3" style="max-width: 350px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
                 <a href="/profile/artists/<%= artist._id %>">
-                  <img class="card-img" src="<%= artist.artistPicture %>" alt="<%= artist.name %>" width="50">
+                  <img class="card-img rounded-circle" src="<%= artist.artistPicture %>" alt="<%= artist.name %>" width="50">
                 </a>
               </div>
               <div class="col-md-8">
                 <a href="/profile/artists/<%= artist._id %>">
-                  <h5 class="card-text mt-2 ml-2"><%= artist.name%></h5>
+                  <h5 class="text-white card-text mt-3 ml-2"><%= artist.name%></h5>
                 </a>
               </div>
             </div>
@@ -30,16 +30,16 @@
       <% }) %>
   <h3 class="text-white">Songs</h3>
   <% genre.songs.forEach(song => { %>
-    <div class="card mb-3" style="max-width: 350px;">
+    <div class="card mb-4" style="max-width: 350px; background-color: transparent; border: 0px;">
       <div class="row no-gutters">
         <div class="col-md-2">
           <a href="/profile/songs/<%= song._id %>">
-            <img class="card-img" src="<%= song.artistPicture %>" alt="<%= song.title %>" width="50">
+            <img class="card-img rounded-circle" src="<%= song.artistPicture %>" alt="<%= song.title %>" width="50">
           </a>
         </div>
         <div class="col-md-8">
           <a href="/profile/songs/<%= song._id %>">
-            <h5 class="card-text mt-2 ml-2"><%= song.title%></h5>
+            <h5 class="card-text mt-2 ml-2 text-white"><%= song.title%></h5>
           </a>
         </div>
       </div>
