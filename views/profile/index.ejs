@@ -36,34 +36,44 @@
     </div>
   </div>
 
+  <% if (user.songs.length === 0) { %>
+    <p>Looks like you don't have any music - go add some!</p>
+  <% } else { %>
   <div id="index-container" class="container show-container mt5 mb-5">
     <div class="row h-100">
       <div class="col pb-5" style="background-color: var(--brightred); padding-left: 0px !important;">
         <a href="/profile/genres">
           <h3 class="text-white mt-3 display-1" >Genres</h3>
         </a>
-        <% user.genres.forEach(genre => { %>
+        <% for (let i = 0; i < (user.genres.length > 5 ? 5 : user.genres.length); i++) { %>
           <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
-                <a href="/profile/genres/<%= genre._id %>">
-                  <img class="card-img rounded-circle border border-white" src="<%= genre.genrePicture %>" alt="<%= genre.name %>" width="50">
+                <a href="/profile/genres/<%= user.genres[i]._id %>">
+                  <img class="card-img rounded-circle border border-white" src="<%= user.genres[i].genrePicture %>" alt="<%= user.genres[i].name %>" width="50">
                 </a>
               </div>
               <div class="col-md-8">
-                <a href="/profile/genres/<%= genre._id %>">
-                  <h3 class="card-text text-white mt-2 ml-1"><%= genre.name %></h3>
+                <a href="/profile/genres/<%= user.genres[i]._id %>">
+                  <h3 class="card-text text-white mt-2 ml-1"><%= user.genres[i].name %></h3>
                 </a>
               </div>
             </div>
           </div>
-        <%  }) %>
+        <%  } %>
+        <% if (user.genres.length > 5 ) { %>
+          <div class="d-flex justify-content-end">
+            <a href="/profile/genres">
+              <button class="btn text-white" style="background-color: #579789;">See More</button>
+            </a>
+          </div>
+        <% } %>
       </div>
       <div class="col pb-5" style="background-color: var(--purepurple); padding-left: 0px !important;">
         <a href="/profile/artists">
         <h3 class="text-white mt-3 display-1">Artists</h3>
          </a>
-        <% for (let i = 0; i < 5; i++) {  %>
+        <% for (let i = 0; i < (user.artists.length > 5 ? 5 : user.artists.length); i++) {   %>
           <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
@@ -79,10 +89,10 @@
             </div>
           </div>
         <%  } %>
-        <% if (user.artists.length > 5) { %>
+        <% if (user.artists.length > 5 ) { %>
           <div class="d-flex justify-content-end">
             <a href="/profile/artists">
-              <button style="background-color: white;">See more...</button>
+              <button class="btn text-white" style="background-color: #579789;">See More</button>
             </a>
           </div>
         <% } %>
@@ -91,7 +101,7 @@
         <a href="/profile/songs">
           <h3 class="text-white mt-3 display-1">Songs</h3>
         </a>
-        <% for (let i = 0; i < 5; i++) { %>
+        <% for (let i = 0; i < (user.songs.length > 5 ? 5 : user.songs.length); i++) {  %>
           <div class="card border border-dark" style="max-width: 350px;">
             <div class="row no-gutters">
               <div class="col-md-2">
@@ -112,10 +122,10 @@
             </div>
           </div>
         <% } %>
-        <% if (user.songs.length > 5) { %>
+        <% if (user.songs.length > 5 ) { %>
           <div class="d-flex justify-content-end">
             <a href="/profile/songs">
-              <button style="background-color: white;">See more...</button>
+              <button class="btn text-white" style="background-color: #579789;">See More</button>
             </a>
           </div>
         <% } %>
@@ -128,6 +138,9 @@
       <div class="col pb-5" style="background-color: #579789;">
         <h2 class="text-white mt-3 align-self-center display-3">Metrics</h2>
         <h4>Artists with the most songs in your collection:</h4>
+         <% if (mostPopularArtist == '') { %>
+           <p>Looks like you have an even love of all artists!</p>
+         <% } else { %>
           <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
@@ -142,7 +155,11 @@
               </div>
             </div>
           </div>
+         <% } %>
           <h4>Genre with the most artists in your collection:</h4>
+          <% if (mostPopularGenre == '') { %>
+            <p>Looks like you have an even love of all genres!</p>
+          <% } else { %>
           <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
             <div class="row no-gutters">
               <div class="col-md-2">
@@ -157,6 +174,7 @@
               </div>
             </div>
           </div>
+        <% } %>
       </div>
       <div class="col pl-4 border border-dark">
         <h4 class="mt-5">Songs in your collection you haven't listened to yet</h4>
@@ -170,18 +188,6 @@
       </div>
     </div>
   </div>
-
-  <!-- <h4>Genres (forEach)</h4>
-  <% user.genres.forEach(genre => { %>
-    <p><%= genre.name %></p>
-  <% }) %>
-   <h4>Artists (for loop)</h4>
-   <% for (let i = 0; i < 5; i++ ) { %>
-    <p><%= user.artists[i].name %></p>
   <% } %>
-   <h4>Genres (for loop)</h4>
-   <% for (let i = 0; i < 5; i++ ) { %> 
-    <p><%= user.genres[i] %></p>
-   <% } %>  -->
 </body>
 </html>

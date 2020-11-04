@@ -24,22 +24,42 @@ router.get('/', async (req, res) => {
 
     function getMostPopArt() {
       let mostPop = user.artists[0]
+      let changed = false
       for (let i = 0; i < user.artists.length; i++) {
         if (mostPop.songs.length < user.artists[i].songs.length) {
           mostPop = user.artists[i]
+          changed = true 
         }
       }
-      mostPopularArtist = mostPop
+      if (changed) {
+        mostPopularArtist = mostPop
+      } else {
+        mostPopularArtist = ''
+      }
     }
 
     function getMostPopGen() {
+
+      // test case: Pop is user.genres[0]
+      // Pop has one artist, Rap/Hip-Hop has two 
       let mostPop = user.genres[0]
+      let allEqual = false 
       for (let i = 0; i < user.genres.length; i++ ) {
+         // if Pop's artists are less than Rap's artists...
         if (mostPop.artists.length < user.genres[i].artists.length) {
           mostPop = user.genres[i]
+        } else if (mostPop.artists.length === user.genres[i].artists.length) {
+          allEqual = true 
+        } else {
+          allEqual = false
         }
+        // console.log(mostPop.name, user.genres[i].name, user.genres[i].artists.length)
       }
-      mostPopularGenre = mostPop
+      if (!allEqual) {
+        mostPopularGenre = mostPop
+      } else {
+        mostPopularGenre = '' 
+      }
     }
 
     function getUnheardSongs() {
