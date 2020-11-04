@@ -42,14 +42,14 @@
  <% } else { %>
 
   <div class="container mt-5">
-    <div class="row border border-dark" style="background-color: red;">
+    <div class="row border border-dark" style="background-color: var(--brightred);">
       <h1 class="text-white p-3">Welcome to Track Meet!</h1>
     </div>
   </div>
-  <div class="container mb-5" style="height: 300px;">
+  <div class="container mb-5 logged-out-home" style="height: 300px;">
     <div class="row h-100">
       <div class="col" style="background-image: url('../assets/open-door.jpeg'); background-size: cover;">
-        <h2 class="mt-5 text-white text-center">Returning user?</h2>
+        <h2 class="mt-5 display-4">Returning user?</h2>
           <div class="d-flex justify-content-center">
             <a href="/login">
               <button class="btn btn-primary mt-3">LOGIN HERE</button>
@@ -57,7 +57,7 @@
           </div>
        </div>
      <div class="col" style="background-image: url('../assets/register.jpeg'); background-size: cover;">
-      <h2 class="mt-5 text-white text-center">Brand New to Track Meet?</h3>
+      <h2 class="mt-5 display-4" style="color: white; text-shadow: 2px 2px black;">Brand New to Track Meet?</h3>
         <div class="d-flex justify-content-center">
           <a href="/register">
             <button class="btn btn-primary mt-3">REGISTER FOR AN ACCOUNT</button>

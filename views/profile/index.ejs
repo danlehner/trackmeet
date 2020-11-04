@@ -14,22 +14,22 @@
 
   <div class="container w-75 show-container mt-5 mb-5">
     <div class="row h-100">
-      <div class="col pb-5" style="background-color: #579789;">
+      <div class="col pb-5" style="background-color: var(--darkteal);">
         <h2 class="text-white mt-3 align-self-center display-3"><%= user.username %></h2>
         <img class="rounded-circle mt-3" src="<%= user.profilePic %>" width="100" />
       </div>
       <div class="col pl-4 border border-dark">
         <div class="mb-3 mt-1">
-          <h2 class="mt-3 align-self-center" style="color: #579789;">City</h2>
+          <h2 class="mt-3 align-self-center" style="color: var(--darkteal);">City</h2>
           <h4><%= user.city %></h4>
         </div>
         <div class="mb-3 mt-1">
-          <h2 class="mt-3 align-self-center" style="color: #579789;">Bio</h2>
+          <h2 class="mt-3 align-self-center" style="color: var(--darkteal);">Bio</h2>
           <p><%= user.bio %></p>
         </div>
         <div class="d-flex justify-content-end">
           <a href="/profile/edit#edit-form">
-            <button class="btn text-white" style="background-color: #579789;">Edit Profile</button>
+            <button class="btn text-white" style="background-color: var(--darkteal);">Edit Profile</button>
           </a>
         </div>
       </div>
@@ -69,7 +69,7 @@
           </div>
         <% } %>
       </div>
-      <div class="col pb-5" style="background-color: var(--purepurple); padding-left: 0px !important;">
+      <div class="col pb-5" style="background-color: var(--mutegold); padding-left: 0px !important;">
         <a href="/profile/artists">
         <h3 class="text-white mt-3 display-1">Artists</h3>
          </a>
@@ -97,7 +97,7 @@
           </div>
         <% } %>
       </div>
-      <div class="col pb-5" style="background-color: var(--deepred);  padding-left: 0px !important;">
+      <div class="col pb-5" style="background-color: var(--darkteal);  padding-left: 0px !important;">
         <a href="/profile/songs">
           <h3 class="text-white mt-3 display-1">Songs</h3>
         </a>
