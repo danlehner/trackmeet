@@ -23,8 +23,8 @@ hr {
   background-color: #efa801 !important;
 }
 
-body {
-  background-color: var(--cloud)
+body, html {
+  background-color: var(--cloud) !important; 
 }
 
 body, html, p {
@@ -202,7 +202,7 @@ h1 {
 }
 
 .result-card h3 {
-  background-color: var(--brightred)
+  background-color: var(--brightred); 
   color: #fafafa; 
   font-size: 20px; 
   padding: 10px; 

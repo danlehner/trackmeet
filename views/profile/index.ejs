@@ -37,9 +37,11 @@
   </div>
 
   <% if (user.songs.length === 0) { %>
-    <p>Looks like you don't have any music - go add some!</p>
+    <div id="index-container" class="container mt-5 mb-5 w-75">
+      <h3>Looks like you don't have any music - <span style="background-color: var(--mutegold); padding: 10px;"><a style="color: white;" href="/search">go add some!</a></span></h3>
+    </div>
   <% } else { %>
-  <div id="index-container" class="container show-container mt5 mb-5">
+  <div id="index-container" class="container show-container mt-5 mb-5">
     <div class="row h-100">
       <div class="col pb-5" style="background-color: var(--brightred); padding-left: 0px !important; z-index: 2;">
         <a href="/profile/genres">

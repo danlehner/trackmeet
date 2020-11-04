@@ -106,8 +106,6 @@ $('.result-box').submit(function(e) {
   dzSearch(searchVal); 
 })
 
-// const dzArtistId = $(`#${nearestId}`).find("input.dz-artist-id").val()
-
 $('.search-results').on('click', 'div.result-card', function(e) {
   e.preventDefault() 
   const nearestId = $(e.target).closest(".result-card").attr("id")
@@ -119,8 +117,6 @@ $('.search-results').on('click', 'div.result-card', function(e) {
   const genre = $(`#${nearestId}`).find('#genre')[0].innerHTML
   const genrePicture = $(`#${nearestId}`).find('#genre-picture')[0].innerHTML
   const dzGenreId = $(`#${nearestId}`).find('#dz-genre-id')[0].innerHTML
-
-  // console.log(dzArtistId, title, artist, artistPicture, albumArt, genre, genrePicture, dzGenreId)
 
   fetch("/search", {
     method: "POST", 

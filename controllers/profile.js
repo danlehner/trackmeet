@@ -9,10 +9,6 @@ const db = require('../models')
 router.get('/', async (req, res) => {
   try {
 
-    // const foundGenres = await db.Genre.find({})
-    // const foundArtists = await db.Artist.find({})
-    // const foundSongs = await db.Song.find({})
-
     const user = await db.User.findById(req.session.currentUser.id)
       .populate('artists')
       .populate('genres')
@@ -82,9 +78,6 @@ router.get('/', async (req, res) => {
     getUnheardSongs()
 
     context = {
-      // genres: foundGenres,
-      // artists: foundArtists, 
-      // songs: foundSongs, 
       user: user,
       mostPopularArtist: mostPopularArtist, 
       mostPopularGenre: mostPopularGenre, 
@@ -145,10 +138,6 @@ router.delete('/:songID', async (req, res) => {
 
   try {
 
-    // const deletedSong = await db.Song.findByIdAndDelete(req.params.songID)
-    // const artist = await db.Artist.findById(deletedSong.artist)
-    // const genre = await db.Genre.findById(deletedSong.genre)
-
     const user = await db.User.findById(req.session.currentUser.id)
      .populate('songs')
      .populate('genres')
@@ -156,20 +145,13 @@ router.delete('/:songID', async (req, res) => {
 
     const songToDelete = await db.Song.findById({ _id: req.params.songID })
 
-    // remove the song from the users songs
-    // console.log("user's song", user.songs)
     user.songs.remove(songToDelete)
 
-    // remove the song from the relevant artist
     const artist = await db.Artist.findById(songToDelete.artist)
     artist.songs.remove(songToDelete)
 
-    // remove the song from the relevant genre
     const genre = await db.Genre.findById(songToDelete.genre)
     genre.songs.remove(songToDelete)
-
-    // if an artist in the user's artists has no songs, delete the artist
-    // if a genre in the user's genres has no songs, delete the genre
 
     artist.songs.remove(songToDelete)
     genre.songs.remove(songToDelete)
@@ -203,11 +185,9 @@ router.delete('/:songID', async (req, res) => {
 router.get('/genres', async (req, res) => {
   try {
 
-    // const foundGenres = await db.Genre.find({})
     const user = await db.User.findById(req.session.currentUser.id).populate('genres')
   
     context = {
-      // allGenres: foundGenres
       user: user
     }
   
@@ -246,11 +226,10 @@ router.get('/genres/:genreID', async (req, res) => {
 router.get('/artists', async (req, res) => {
 
   try {
-    // const foundArtists = await db.Artist.find({})
+
     const user = await db.User.findById(req.session.currentUser.id).populate('artists')
 
     context = {
-      // allArtists: foundArtists
       user: user
     }
   
@@ -295,7 +274,6 @@ router.get('/artists/:artistID', async (req, res) => {
     context = {
       artist: foundArtist, 
       genre: foundGenre,
-      // relatedArtists: relatedArtists
     }
 
     res.render('profile/artists/artist-show.ejs', context)
@@ -311,7 +289,6 @@ router.get('/artists/:artistID', async (req, res) => {
 router.get('/songs', async (req, res) => {
   try {
     
-    // const foundSongs = await db.Song.find({})
     const user = await db.User.findById(req.session.currentUser.id).populate('songs')
 
     context = {
@@ -350,10 +327,6 @@ router.get('/songs/:songID', async (req, res) => {
 router.delete('/songs/:songID', async (req, res) => {
   try {
 
-    // const deletedSong = await db.Song.findByIdAndDelete(req.params.songID)
-    // const artist = await db.Artist.findById(deletedSong.artist)
-    // const genre = await db.Genre.findById(deletedSong.genre)
-
     const user = await db.User.findById(req.session.currentUser.id)
      .populate('songs')
      .populate('genres')
@@ -361,20 +334,13 @@ router.delete('/songs/:songID', async (req, res) => {
 
     const songToDelete = await db.Song.findById({ _id: req.params.songID })
 
-    // remove the song from the users songs
-    // console.log("user's song", user.songs)
     user.songs.remove(songToDelete)
 
-    // remove the song from the relevant artist
     const artist = await db.Artist.findById(songToDelete.artist)
     artist.songs.remove(songToDelete)
 
-    // remove the song from the relevant genre
     const genre = await db.Genre.findById(songToDelete.genre)
     genre.songs.remove(songToDelete)
-
-    // if an artist in the user's artists has no songs, delete the artist
-    // if a genre in the user's genres has no songs, delete the genre
 
     artist.songs.remove(songToDelete)
     genre.songs.remove(songToDelete)
@@ -405,7 +371,6 @@ router.delete('/songs/:songID', async (req, res) => {
 
 
 router.put('/songs/:songID/edit', async (req, res) => {
-  // determine what the req object is (either testimony or listenedTo)
   let updatedData
 
   if (req.body.testimony) {
