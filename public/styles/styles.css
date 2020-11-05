@@ -46,6 +46,10 @@ h1 {
   text-shadow: 2px 2px black; 
 }
 
+.text-white {
+  color: var(--cloud) !important; 
+}
+
 .navbar-brand {
   font-family: 'Clarendon Regular', Arial, sans-serif; 
   background-color: var(--brightred); 

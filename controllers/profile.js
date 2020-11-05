@@ -14,8 +14,6 @@ router.get('/', async (req, res) => {
       .populate('genres')
       .populate('songs')
 
-    console.log(user.genres)
-
     let mostPopularArtist = '' 
     let mostPopularGenre = '' 
     let unheardSongs = []
