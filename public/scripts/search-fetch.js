@@ -32,7 +32,6 @@ const displayResults = function(
     <p id="dz-genre-id" class="hidden">${dzGenreId}</p>
   </div>
   `)
-
 }
 
 const dzSearch = (query) => {
