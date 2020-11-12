@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const path = require('path');
 const session = require('express-session'); 
 const MongoStore = require('connect-mongo')(session)
+require('dotenv').config()
 
 // Internal references
 const controllers = require('./controllers'); 
