@@ -24,7 +24,7 @@ app.use(session({
   saveUninitialized: false, 
   secret: process.env.SESSION_SECRET || "spacewafflefighter", 
   store: new MongoStore({ 
-    url: process.env.MONGODB_URL || "mongodb://localhost:27017/trackstar"
+    url: process.env.MONGODB_URI || "mongodb://localhost:27017/trackstar"
   }), 
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 7
