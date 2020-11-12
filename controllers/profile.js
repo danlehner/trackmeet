@@ -255,28 +255,6 @@ router.get('/artists/:artistID', async (req, res) => {
     const foundArtist = await db.Artist.findById(req.params.artistID).populate('songs')
     const foundGenre = await db.Genre.findById(foundArtist.genre)
 
-    const queriedArtist = await db.Artist.findOne({ _id: req.params.artistID})
-
-    const dzArtistId = queriedArtist.dzArtistId
-  
-    const DZ_API_KEY = 'fae0f6f90emsh8e90cd79d598afcp1e6185jsn8b369fe30354'
-  
-    const GET_CONFIG = {
-      "method": "GET",
-        "headers": {
-          "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-          "x-rapidapi-key": `${DZ_API_KEY}`
-        }
-    }
-    
-  
-    fetch(`https://deezerdevs-deezer.p.rapidapi.com/artist/${dzArtistId}/related`, GET_CONFIG)
-        .then(res => res.json())
-        .then(json => {
-          relatedArtists = json.data
-      })
-
-
     context = {
       artist: foundArtist, 
       genre: foundGenre,

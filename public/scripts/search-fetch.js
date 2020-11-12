@@ -1,4 +1,3 @@
-const DZ_API_KEY = 'fae0f6f90emsh8e90cd79d598afcp1e6185jsn8b369fe30354'
 
 const GET_CONFIG = {
 	"method": "GET",
@@ -143,6 +142,6 @@ $('.search-results').on('click', 'div.result-card', function(e) {
     }, 200)
   })
   .catch(error => {
-    return console.log('there was an error on the client side', error)
+    return console.log(error)
   })
 })
