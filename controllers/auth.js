@@ -55,7 +55,9 @@ router.post('/login', async (req, res) => {
       id: foundUser._id
     }
 
-    res.redirect('/profile')
+    res.redirect('/')
+
+    console.log('user authenticated')
     
   } catch (error) {
     console.log(error)
@@ -66,6 +68,8 @@ router.post('/login', async (req, res) => {
 router.delete('/logout', async (req, res) => {
   await req.session.destroy() 
   res.redirect('/')
+  console.log('session destroyed')
+
 })
 
 module.exports = router

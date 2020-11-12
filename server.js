@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   resave: false, 
   saveUninitialized: false, 
-  secret: "spacewafflefighter", 
+  secret: process.env.SESSION_SECRET || "spacewafflefighter", 
   store: new MongoStore({ 
     url: process.env.MONGODB_URL || "mongodb://localhost:27017/trackstar"
   }), 
