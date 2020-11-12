@@ -1,3 +1,4 @@
+const DZ_API_KEY = "fae0f6f90emsh8e90cd79d598afcp1e6185jsn8b369fe30354"
 
 const GET_CONFIG = {
 	"method": "GET",
@@ -74,7 +75,6 @@ const dzSearch = (query) => {
             }
 
             $('#loading-text').remove() 
-
 
             displayResults(artistId, songTitle, artistName, artistPicture, albumArt, genreName, genrePicture, genreId, cardId); 
 
