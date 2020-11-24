@@ -30,7 +30,7 @@ Users will be able to create an account or login into their existing one. When t
 
 Users will be able to see their profile and information they provided during sign-up, including their user name, profile image, location and a little bit about themselves (they can edit this info later) 
 
-![Profile portion of homepage](/readme-images/logged-in-home.png)
+![Profile portion of homepage](/readme-images/profile-top.png)
 
 ### Viewing their collection
 
