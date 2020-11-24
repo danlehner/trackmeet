@@ -12,6 +12,7 @@ Track Meet utlizes:
 * Express
 * Node.js
 * JavaScript
+* jQuery
 * EJS
 * Bcrypt
 * Express Session
@@ -43,3 +44,32 @@ Scrolling down in the homepage, they'll be able to view their music collection, 
 Based on their collection, users will be able to see which genre in their collection contains the most artists and which artists has the most songs. They will also be able to keep track of which songs they have not marked "listened to" yet (they can access those songs from this section)
 
 ![Metrics portion of homepage](/readme-images/metrics.png)
+
+### Viewing sub collections
+
+Users will be able to click through and see complete collections of genres, artists and songs. 
+
+![Artist collection](/readme-images/artist-collection-page.png)
+
+### Viewing artist pages
+
+Users will be able to see complete song collections by specific artists. 
+
+![Individual artist page](/readme-images/artist-page.png)
+
+### Viewing song pages
+
+Users will be able to see pages for individual songs. Here they can follow external links to listen to the song on YouTube, Spotify, Apple Music and Deezer. They can make personal notes on the song and check off whether they've listened to it or not. They can also delete the song from here and be redirected to their collection page. 
+
+![Individual song page](/readme-images/song-page.png)
+
+### Searching for new music
+
+Here, users can add music to their collection. They can search by song title or keywords and get back results from the Deezer API. From here, they simply click on a song "card" and it will automatically be added to their collection:  
+
+![Search hero](/readme-images/search-hero.png)
+
+![Search results](/readme-images/search-results.png)
+
+
+
