@@ -94,6 +94,12 @@ h1 {
   text-shadow: 2px 2px white;
 }
 
+@media screen and (min-width: 768px) {
+  .height-100 {
+    height: 100%; 
+  }
+}
+
 @media screen and (max-width: 767px) {
   .logged-out-header {
     text-align: center;
@@ -105,6 +111,11 @@ h1 {
 
   .logged-out-home button {
     margin-bottom: 2em; 
+  }
+
+  .logged-out-home .row {
+    display: flex; 
+    flex-direction: column;
   }
 }
 
