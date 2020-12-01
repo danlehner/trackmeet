@@ -121,6 +121,12 @@ h1 {
   }
 }
 
+@media screen and (max-width: 767px) {
+  .register-hero {
+    padding-bottom: 2rem; 
+  }
+}
+
 .search-description {
   width: 450px; 
   background-color: var(--brightred); 
