@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="container w-75 show-container mt-5 mb-5">
+  <div class="container w-75 show-container mt-5 mb-5 profile-box">
     <div class="row h-100">
       <div class="col pb-5" style="background-color: var(--darkteal);">
         <h2 class="mt-3 align-self-center display-3" style="margin-left: -.35em; color: var(--cloud);"><%= user.username %></h2>
@@ -48,8 +48,9 @@
           <h3 class="mt-3 display-1" style="color: var(--cloud);">Genres</h3>
           <hr>
         </a>
+      <div class="mobile-card-container">
         <% for (let i = 0; i < (user.genres.length > 5 ? 5 : user.genres.length); i++) { %>
-          <div class="card" style="max-width: 300px; background-color: transparent; border: 0px;">
+          <div class="card">
             <div class="row no-gutters">
               <div class="col-md-2">
                 <a href="/profile/genres/<%= user.genres[i]._id %>">
@@ -64,6 +65,7 @@
             </div>
           </div>
         <%  } %>
+      </div>
         <% if (user.genres.length > 5 ) { %>
           <div class="d-flex justify-content-end mt-5">
             <a href="/profile/genres">

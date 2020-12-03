@@ -37,6 +37,14 @@ h2, h3 {
 }
 
 @media screen and (max-width: 767px) {
+
+  .display-1 {
+    font-size: 5em !important; 
+  }
+
+  .display-3 {
+    font-size: 3.5rem !important; 
+  }
   .display-4 {
     font-size: 2.5rem !important; 
   }
@@ -68,7 +76,7 @@ h1 {
   color: var(--brightred) !important;  
 }
 
-.navbar {
+#navbar {
   background-color: var(--darkteal); 
 }
 
@@ -85,6 +93,17 @@ h1 {
 .nav-item form input {
   background-color: var(--mutegold); 
   border: 0px; 
+}
+
+@media screen and (max-width: 767px) {
+  .home-logout {
+    margin-left: 0px !important; 
+  }
+
+  .nav-item form input {
+    padding: 0.5em !important;  
+    margin-bottom: 2em; 
+  }
 }
 
 .logged-out-home h2 {
@@ -137,6 +156,16 @@ h1 {
 
   .mobile-blk-bgd {
     background-color: #131519;
+  }
+
+  .logged-in-header h1 {
+    text-align: center; 
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile-box button {
+    margin-bottom: 2em; 
   }
 }
 
@@ -210,8 +239,30 @@ h1 {
 
 /* --- RESULT CARD --- */
 
+
 .card, .card-img {
   border-radius: 0px; 
+}
+
+.card {
+  max-width: 300px !important; 
+  background-color: transparent !important; 
+  border: 0px !important;
+}
+
+@media screen and (max-width: 767px) {
+
+  .mobile-card-container {
+    display: flex; 
+    flex-flow: wrap; 
+  }
+
+  .mobile-card-container h3 {
+    font-size: 1rem !important; 
+  }
+  .card-img {
+    width: 100px !important; 
+  }
 }
 
 .result-card {
