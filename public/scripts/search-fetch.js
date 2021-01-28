@@ -76,6 +76,8 @@ const dzSearch = (query) => {
 
             $('#loading-text').remove() 
 
+            console.log("artistId:", artistId, "songTitle", songTitle, "artistName:", artistName, "artistPicture:", artistPicture, "albumArt:", albumArt, "genreName:", genreName, "genrePicture:", genrePicture, "genreId:", genreId, "cardId:", cardId)
+
             displayResults(artistId, songTitle, artistName, artistPicture, albumArt, genreName, genrePicture, genreId, cardId); 
 
             clearSearchAvail()
