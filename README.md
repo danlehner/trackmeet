@@ -1,5 +1,7 @@
 # Track Meet
 
+(App deployed on Heroku: ![Track Meet](https://dl-track-meet.herokuapp.com/))
+
 ## What is Track Meet? 
 
 Track Meet is an app that promotes conscious music listening, utilizing Deezer’s API, that creates a collection for users where they can write notes about music to themselves, keep track of songs they’ve listened to, discover new music and see their own preference metrics. 
@@ -10,8 +12,6 @@ Track Meet utlizes:
 
 * MongoDB / Mongoose
 * Express
-* Node.js
-* JavaScript
 * jQuery
 * EJS
 * Bcrypt
