@@ -1,6 +1,6 @@
 # Track Meet
 
-(App deployed on Heroku: ![Track Meet](https://dl-track-meet.herokuapp.com/))
+(App deployed on Heroku: [Track Meet](https://dl-track-meet.herokuapp.com/))
 
 ## What is Track Meet? 
 
