@@ -1,3 +1,7 @@
+# ANNOUNCEMENT!:
+
+(7/28/21): Bigger and better things are in the works for Track Meet - check out the README for [Track Meet MERN](https://github.com/danlehner/trackmeet-mern) to see the proposed changes for the app and preview its progress before official deployment.
+
 # Track Meet
 
 (App deployed on Heroku: [Track Meet](https://dl-track-meet.herokuapp.com/))
