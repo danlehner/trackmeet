@@ -4,7 +4,6 @@ const fetch = require('node-fetch')
 
 const db = require('../models')
 
-
 /* PROFILE */
 router.get('/', async (req, res) => {
   try {

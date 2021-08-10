@@ -53,7 +53,6 @@ app.use('/', controllers.auth)
 app.use('/search', authRequired, controllers.search)
 app.use('/profile', authRequired, controllers.profile)
 
-
 // port listening
 app.listen(PORT, () => {
   console.log(`Now serving on http://localhost:${PORT}`)
